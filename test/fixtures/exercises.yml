@@ -1,9 +1,101 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+bench_press:
+  title: "Bench Press"
+  description: "A compound exercise that targets the chest, shoulders, and triceps."
+  category: "upper"
+  body_part_main: "Chest"
+  body_part_accessory:
+    body_parts:
+      - "Shoulders"
+      - "Triceps"
 
-one:
-  title: MyString
-  description: MyText
+straight_arm_pulldown:
+  title: "Straight Arm Pulldown"
+  description: "An exercise targeting the upper back and lats."
+  category: "upper"
+  body_part_main: "Back"
+  body_part_accessory:
+    body_parts: []
 
-two:
-  title: MyString
-  description: MyText
+machine_shoulder_press:
+  title: "Machine Shoulder Press"
+  description: "A compound exercise targeting the shoulders and upper arms."
+  category: "upper"
+  body_part_main: "Shoulders"
+  body_part_accessory:
+    body_parts:
+      - "Triceps"
+
+cable_row:
+  title: "Cable Row"
+  description: "An exercise focusing on the muscles of the back and biceps."
+  category: "upper"
+  body_part_main: "Back"
+  body_part_accessory:
+    body_parts:
+      - "Biceps"
+
+tricep_pushdown:
+  title: "Tricep Pushdown"
+  description: "An isolation exercise targeting the triceps."
+  category: "upper"
+  body_part_main: "Triceps"
+  body_part_accessory:
+    body_parts: []
+
+bicep_curl:
+  title: "Bicep Curl"
+  description: "An exercise primarily targeting the biceps."
+  category: "upper"
+  body_part_main: "Biceps"
+  body_part_accessory:
+    body_parts: []
+
+lateral_raise:
+  title: "Lateral Raise"
+  description: "Targets the deltoid muscles of the shoulder."
+  category: "upper"
+  body_part_main: "Shoulders"
+  body_part_accessory:
+    body_parts: []
+
+ab_crunch:
+  title: "Ab Crunch"
+  description: "A core exercise targeting the abdominal muscles."
+  category: "core"
+  body_part_main: "Abdominals"
+  body_part_accessory:
+    body_parts: []
+
+leg_press:
+  title: "Leg Press"
+  description: "A compound exercise targeting the quadriceps, hamstrings, and glutes."
+  category: "lower"
+  body_part_main: "Quadriceps"
+  body_part_accessory:
+    body_parts:
+      - "Hamstrings"
+      - "Glutes"
+
+quad_extension:
+  title: "Quad Extension"
+  description: "An isolation exercise focusing on the quadriceps."
+  category: "lower"
+  body_part_main: "Quadriceps"
+  body_part_accessory:
+    body_parts: []
+
+leg_curl:
+  title: "Leg Curl"
+  description: "Targets hamstrings at the back of the leg."
+  category: "lower"
+  body_part_main: "Hamstrings"
+  body_part_accessory:
+    body_parts: []
+
+calf_raise:
+  title: "Calf Raise"
+  description: "An exercise focusing on the calf muscles."
+  category: "lower"
+  body_part_main: "Calves"
+  body_part_accessory:
+    body_parts: []
