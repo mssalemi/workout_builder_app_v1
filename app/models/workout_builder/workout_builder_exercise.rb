@@ -52,7 +52,7 @@ module WorkoutBuilder
                 performance_data: performance_data,
             )
 
-            @complete = true if exercise.persisted?
+            @complete = true if exercise
 
             exercise
         end
