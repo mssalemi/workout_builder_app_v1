@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  exercise: one
+  workout: one
+  date: 2024-01-11
+  performance_data: 
+
+two:
+  user: two
+  exercise: two
+  workout: two
+  date: 2024-01-11
+  performance_data: 
