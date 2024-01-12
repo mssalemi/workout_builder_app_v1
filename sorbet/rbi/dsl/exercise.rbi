@@ -5,6 +5,7 @@
 # Please instead update this file by running `bin/tapioca dsl Exercise`.
 
 class Exercise
+  include GeneratedAssociationMethods
   include GeneratedAttributeMethods
   extend CommonRelationMethods
   extend GeneratedRelationMethods
@@ -218,6 +219,26 @@ class Exercise
     def third_to_last!; end
   end
 
+  module GeneratedAssociationMethods
+    sig { params(args: T.untyped, blk: T.untyped).returns(::User) }
+    def build_user(*args, &blk); end
+
+    sig { params(args: T.untyped, blk: T.untyped).returns(::User) }
+    def create_user(*args, &blk); end
+
+    sig { params(args: T.untyped, blk: T.untyped).returns(::User) }
+    def create_user!(*args, &blk); end
+
+    sig { returns(T.nilable(::User)) }
+    def reload_user; end
+
+    sig { returns(T.nilable(::User)) }
+    def user; end
+
+    sig { params(value: T.nilable(::User)).void }
+    def user=(value); end
+  end
+
   module GeneratedAssociationRelationMethods
     sig { returns(PrivateAssociationRelation) }
     def all; end
@@ -408,6 +429,141 @@ class Exercise
   end
 
   module GeneratedAttributeMethods
+    sig { returns(T.untyped) }
+    def body_part_accessory; end
+
+    sig { params(value: T.untyped).returns(T.untyped) }
+    def body_part_accessory=(value); end
+
+    sig { returns(T::Boolean) }
+    def body_part_accessory?; end
+
+    sig { returns(T.untyped) }
+    def body_part_accessory_before_last_save; end
+
+    sig { returns(T.untyped) }
+    def body_part_accessory_before_type_cast; end
+
+    sig { returns(T::Boolean) }
+    def body_part_accessory_came_from_user?; end
+
+    sig { returns(T.nilable([T.untyped, T.untyped])) }
+    def body_part_accessory_change; end
+
+    sig { returns(T.nilable([T.untyped, T.untyped])) }
+    def body_part_accessory_change_to_be_saved; end
+
+    sig { params(from: T.untyped, to: T.untyped).returns(T::Boolean) }
+    def body_part_accessory_changed?(from: T.unsafe(nil), to: T.unsafe(nil)); end
+
+    sig { returns(T.untyped) }
+    def body_part_accessory_in_database; end
+
+    sig { returns(T.nilable([T.untyped, T.untyped])) }
+    def body_part_accessory_previous_change; end
+
+    sig { params(from: T.untyped, to: T.untyped).returns(T::Boolean) }
+    def body_part_accessory_previously_changed?(from: T.unsafe(nil), to: T.unsafe(nil)); end
+
+    sig { returns(T.untyped) }
+    def body_part_accessory_previously_was; end
+
+    sig { returns(T.untyped) }
+    def body_part_accessory_was; end
+
+    sig { void }
+    def body_part_accessory_will_change!; end
+
+    sig { returns(::String) }
+    def body_part_main; end
+
+    sig { params(value: ::String).returns(::String) }
+    def body_part_main=(value); end
+
+    sig { returns(T::Boolean) }
+    def body_part_main?; end
+
+    sig { returns(T.nilable(::String)) }
+    def body_part_main_before_last_save; end
+
+    sig { returns(T.untyped) }
+    def body_part_main_before_type_cast; end
+
+    sig { returns(T::Boolean) }
+    def body_part_main_came_from_user?; end
+
+    sig { returns(T.nilable([::String, ::String])) }
+    def body_part_main_change; end
+
+    sig { returns(T.nilable([::String, ::String])) }
+    def body_part_main_change_to_be_saved; end
+
+    sig { params(from: ::String, to: ::String).returns(T::Boolean) }
+    def body_part_main_changed?(from: T.unsafe(nil), to: T.unsafe(nil)); end
+
+    sig { returns(T.nilable(::String)) }
+    def body_part_main_in_database; end
+
+    sig { returns(T.nilable([::String, ::String])) }
+    def body_part_main_previous_change; end
+
+    sig { params(from: ::String, to: ::String).returns(T::Boolean) }
+    def body_part_main_previously_changed?(from: T.unsafe(nil), to: T.unsafe(nil)); end
+
+    sig { returns(T.nilable(::String)) }
+    def body_part_main_previously_was; end
+
+    sig { returns(T.nilable(::String)) }
+    def body_part_main_was; end
+
+    sig { void }
+    def body_part_main_will_change!; end
+
+    sig { returns(::String) }
+    def category; end
+
+    sig { params(value: ::String).returns(::String) }
+    def category=(value); end
+
+    sig { returns(T::Boolean) }
+    def category?; end
+
+    sig { returns(T.nilable(::String)) }
+    def category_before_last_save; end
+
+    sig { returns(T.untyped) }
+    def category_before_type_cast; end
+
+    sig { returns(T::Boolean) }
+    def category_came_from_user?; end
+
+    sig { returns(T.nilable([::String, ::String])) }
+    def category_change; end
+
+    sig { returns(T.nilable([::String, ::String])) }
+    def category_change_to_be_saved; end
+
+    sig { params(from: ::String, to: ::String).returns(T::Boolean) }
+    def category_changed?(from: T.unsafe(nil), to: T.unsafe(nil)); end
+
+    sig { returns(T.nilable(::String)) }
+    def category_in_database; end
+
+    sig { returns(T.nilable([::String, ::String])) }
+    def category_previous_change; end
+
+    sig { params(from: ::String, to: ::String).returns(T::Boolean) }
+    def category_previously_changed?(from: T.unsafe(nil), to: T.unsafe(nil)); end
+
+    sig { returns(T.nilable(::String)) }
+    def category_previously_was; end
+
+    sig { returns(T.nilable(::String)) }
+    def category_was; end
+
+    sig { void }
+    def category_will_change!; end
+
     sig { returns(T.nilable(::ActiveSupport::TimeWithZone)) }
     def created_at; end
 
@@ -589,6 +745,15 @@ class Exercise
     def id_will_change!; end
 
     sig { void }
+    def restore_body_part_accessory!; end
+
+    sig { void }
+    def restore_body_part_main!; end
+
+    sig { void }
+    def restore_category!; end
+
+    sig { void }
     def restore_created_at!; end
 
     sig { void }
@@ -605,6 +770,27 @@ class Exercise
 
     sig { void }
     def restore_updated_at!; end
+
+    sig { void }
+    def restore_user_id!; end
+
+    sig { returns(T.nilable([T.untyped, T.untyped])) }
+    def saved_change_to_body_part_accessory; end
+
+    sig { returns(T::Boolean) }
+    def saved_change_to_body_part_accessory?; end
+
+    sig { returns(T.nilable([::String, ::String])) }
+    def saved_change_to_body_part_main; end
+
+    sig { returns(T::Boolean) }
+    def saved_change_to_body_part_main?; end
+
+    sig { returns(T.nilable([::String, ::String])) }
+    def saved_change_to_category; end
+
+    sig { returns(T::Boolean) }
+    def saved_change_to_category?; end
 
     sig { returns(T.nilable([T.nilable(::ActiveSupport::TimeWithZone), T.nilable(::ActiveSupport::TimeWithZone)])) }
     def saved_change_to_created_at; end
@@ -641,6 +827,12 @@ class Exercise
 
     sig { returns(T::Boolean) }
     def saved_change_to_updated_at?; end
+
+    sig { returns(T.nilable([T.nilable(::Integer), T.nilable(::Integer)])) }
+    def saved_change_to_user_id; end
+
+    sig { returns(T::Boolean) }
+    def saved_change_to_user_id?; end
 
     sig { returns(T.nilable(::String)) }
     def title; end
@@ -732,6 +924,60 @@ class Exercise
     sig { void }
     def updated_at_will_change!; end
 
+    sig { returns(T.nilable(::Integer)) }
+    def user_id; end
+
+    sig { params(value: T.nilable(::Integer)).returns(T.nilable(::Integer)) }
+    def user_id=(value); end
+
+    sig { returns(T::Boolean) }
+    def user_id?; end
+
+    sig { returns(T.nilable(::Integer)) }
+    def user_id_before_last_save; end
+
+    sig { returns(T.untyped) }
+    def user_id_before_type_cast; end
+
+    sig { returns(T::Boolean) }
+    def user_id_came_from_user?; end
+
+    sig { returns(T.nilable([T.nilable(::Integer), T.nilable(::Integer)])) }
+    def user_id_change; end
+
+    sig { returns(T.nilable([T.nilable(::Integer), T.nilable(::Integer)])) }
+    def user_id_change_to_be_saved; end
+
+    sig { params(from: T.nilable(::Integer), to: T.nilable(::Integer)).returns(T::Boolean) }
+    def user_id_changed?(from: T.unsafe(nil), to: T.unsafe(nil)); end
+
+    sig { returns(T.nilable(::Integer)) }
+    def user_id_in_database; end
+
+    sig { returns(T.nilable([T.nilable(::Integer), T.nilable(::Integer)])) }
+    def user_id_previous_change; end
+
+    sig { params(from: T.nilable(::Integer), to: T.nilable(::Integer)).returns(T::Boolean) }
+    def user_id_previously_changed?(from: T.unsafe(nil), to: T.unsafe(nil)); end
+
+    sig { returns(T.nilable(::Integer)) }
+    def user_id_previously_was; end
+
+    sig { returns(T.nilable(::Integer)) }
+    def user_id_was; end
+
+    sig { void }
+    def user_id_will_change!; end
+
+    sig { returns(T::Boolean) }
+    def will_save_change_to_body_part_accessory?; end
+
+    sig { returns(T::Boolean) }
+    def will_save_change_to_body_part_main?; end
+
+    sig { returns(T::Boolean) }
+    def will_save_change_to_category?; end
+
     sig { returns(T::Boolean) }
     def will_save_change_to_created_at?; end
 
@@ -749,6 +995,9 @@ class Exercise
 
     sig { returns(T::Boolean) }
     def will_save_change_to_updated_at?; end
+
+    sig { returns(T::Boolean) }
+    def will_save_change_to_user_id?; end
   end
 
   module GeneratedRelationMethods

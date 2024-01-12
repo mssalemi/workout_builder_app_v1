@@ -6,14 +6,5 @@
 
 class ActiveSupport::TestCase
   sig { params(fixture_names: T.any(String, Symbol)).returns(T.untyped) }
-  def exercise_histories(*fixture_names); end
-
-  sig { params(fixture_names: T.any(String, Symbol)).returns(T.untyped) }
   def exercises(*fixture_names); end
-
-  sig { params(fixture_names: T.any(String, Symbol)).returns(T.untyped) }
-  def users(*fixture_names); end
-
-  sig { params(fixture_names: T.any(String, Symbol)).returns(T.untyped) }
-  def workouts(*fixture_names); end
 end
