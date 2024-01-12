@@ -9,6 +9,8 @@ group :development do
   gem 'tapioca', require: false
 end
 
+gem 'sorbet-runtime'
+
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
 
