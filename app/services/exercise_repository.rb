@@ -1,10 +1,14 @@
-# typed: false
+# typed: true
 
 class ExerciseRepository
+    extend T::Sig
+
+    sig { params(user_id: Integer).void }
     def initialize(user_id:)
         @user_id = user_id
     end
 
+    sig { params(filters: T::Hash[Symbol, T.untyped]).returns(T::Array[Exercise]) }
     def filter_exercises(filters = {})
         exercises = Exercise.where(user_id: @user_id).or(Exercise.where(user_id: nil))
 
@@ -17,9 +21,10 @@ class ExerciseRepository
             exercises = exercises.where("json_extract(body_part_accessory, '$.body_parts') LIKE ?", "%#{filters[:body_part_accessory]}%")
         end
 
-        exercises
+        exercises.to_a
     end
 
+    sig { params(exercise_id: Integer).returns(Exercise) }
     def find_by_id(exercise_id:)
         exercise = Exercise.find_by(id: exercise_id)
 

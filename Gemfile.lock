@@ -300,7 +300,6 @@ DEPENDENCIES
   stimulus-rails
   tapioca
   turbo-rails
-  tzinfo-data
   web-console
 
 RUBY VERSION
