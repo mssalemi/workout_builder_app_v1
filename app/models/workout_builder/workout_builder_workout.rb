@@ -17,9 +17,9 @@ module WorkoutBuilder
         sig { params(user_id: Integer).void }
         def initialize(user_id:)
             user = User.find_by(id: user_id)
-
             raise ActiveRecord::RecordNotFound if user.nil?
 
+            @exercise_service = ExerciseService.new(user_id: user_id)
             @exercises = T.let([], T::Array[WorkoutBuilderExercise])
             @user = user
             @id = T.let(1, Integer)
