@@ -62,6 +62,28 @@ module WorkoutBuilder
             end
         end
 
+        def save
+            workout = Workout.create(user_id: @user.id, goal: {}, title: "Sample Workout")
+            workout
+        end
+
+        sig { params(workout_id: Integer).returns(T.nilable(WorkoutBuilderWorkout)) }
+        def self.load_from_db(workout_id:)
+            workout_record = Workout.find_by(id: workout_id)
+            return nil unless workout_record
+
+            # Assuming you have a way to retrieve exercises for this workout
+            exercises = ExerciseHistory.where(workout_id: workout_id).map do |history_record|
+                # You will need to implement logic to convert history_record to WorkoutBuilderExercise
+            end
+
+            # Initialize a new instance with the data from the workout_record
+            workout_builder = new(user_id: workout_record.user_id)
+            workout_builder.instance_variable_set(:@exercises, exercises)
+            workout_builder.instance_variable_set(:@id, workout_record.id)
+            workout_builder
+        end
+
         private
 
         sig { params(id: String).returns(T.nilable(WorkoutBuilderExercise)) }
