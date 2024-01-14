@@ -14,10 +14,14 @@ module WorkoutBuilder
         sig { returns(Integer) }
         attr_reader :id, :user_id
 
-        sig { void }
-        def initialize
+        sig { params(user_id: Integer).void }
+        def initialize(user_id:)
+            user = User.find_by(id: user_id)
+
+            raise ActiveRecord::RecordNotFound if user.nil?
+
             @exercises = T.let([], T::Array[WorkoutBuilderExercise])
-            @user_id = T.let(1, Integer)
+            @user = user
             @id = T.let(1, Integer)
         end
 
