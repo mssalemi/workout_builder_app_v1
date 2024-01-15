@@ -6,10 +6,15 @@ module WorkoutBuilder
 
         ## Create Workout
         ### Saves emptry workout to database
-        def create_workout(user_id:)
-            workout = WorkoutBuilderWorkout.new(user_id: user_id)
-            workout.save
-        end
+        # def create_workout(user_id:)
+        #     workout = WorkoutBuilderWorkout.new(user_id: user_id)
+        #     workout.save
+        # end
+
+        # def add_exercise_to_workout(workout_id:, exercise_id:, goal:)
+        #     workout = find_workout(workout_id: workout_id)
+        #     workout.add_exercise(exercise_id: exercise_id, goal: goal)
+        # end
 
         ## Update Workout
         ### Add Exercise to Workout

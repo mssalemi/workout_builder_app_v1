@@ -510,6 +510,51 @@ class ExerciseHistory
   end
 
   module GeneratedAttributeMethods
+    sig { returns(T::Boolean) }
+    def completed; end
+
+    sig { params(value: T::Boolean).returns(T::Boolean) }
+    def completed=(value); end
+
+    sig { returns(T::Boolean) }
+    def completed?; end
+
+    sig { returns(T.nilable(T::Boolean)) }
+    def completed_before_last_save; end
+
+    sig { returns(T.untyped) }
+    def completed_before_type_cast; end
+
+    sig { returns(T::Boolean) }
+    def completed_came_from_user?; end
+
+    sig { returns(T.nilable([T::Boolean, T::Boolean])) }
+    def completed_change; end
+
+    sig { returns(T.nilable([T::Boolean, T::Boolean])) }
+    def completed_change_to_be_saved; end
+
+    sig { params(from: T::Boolean, to: T::Boolean).returns(T::Boolean) }
+    def completed_changed?(from: T.unsafe(nil), to: T.unsafe(nil)); end
+
+    sig { returns(T.nilable(T::Boolean)) }
+    def completed_in_database; end
+
+    sig { returns(T.nilable([T::Boolean, T::Boolean])) }
+    def completed_previous_change; end
+
+    sig { params(from: T::Boolean, to: T::Boolean).returns(T::Boolean) }
+    def completed_previously_changed?(from: T.unsafe(nil), to: T.unsafe(nil)); end
+
+    sig { returns(T.nilable(T::Boolean)) }
+    def completed_previously_was; end
+
+    sig { returns(T.nilable(T::Boolean)) }
+    def completed_was; end
+
+    sig { void }
+    def completed_will_change!; end
+
     sig { returns(T.nilable(::ActiveSupport::TimeWithZone)) }
     def created_at; end
 
@@ -781,6 +826,9 @@ class ExerciseHistory
     def performance_data_will_change!; end
 
     sig { void }
+    def restore_completed!; end
+
+    sig { void }
     def restore_created_at!; end
 
     sig { void }
@@ -806,6 +854,12 @@ class ExerciseHistory
 
     sig { void }
     def restore_workout_id!; end
+
+    sig { returns(T.nilable([T::Boolean, T::Boolean])) }
+    def saved_change_to_completed; end
+
+    sig { returns(T::Boolean) }
+    def saved_change_to_completed?; end
 
     sig { returns(T.nilable([T.nilable(::ActiveSupport::TimeWithZone), T.nilable(::ActiveSupport::TimeWithZone)])) }
     def saved_change_to_created_at; end
@@ -950,6 +1004,9 @@ class ExerciseHistory
 
     sig { void }
     def user_id_will_change!; end
+
+    sig { returns(T::Boolean) }
+    def will_save_change_to_completed?; end
 
     sig { returns(T::Boolean) }
     def will_save_change_to_created_at?; end
