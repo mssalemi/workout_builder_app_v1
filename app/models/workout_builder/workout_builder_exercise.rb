@@ -18,6 +18,7 @@ module WorkoutBuilder
         sig { returns(String) }
         attr_reader :id
 
+        #  WorkoutBuilder::WorkoutBuilderExercise.new(excercise_id: 1, exercise_history: ExerciseHistory.first, completed: false, goal: {weight: 100, reps: 10, sets: 3})
 
         sig { params(
             exercise_id: Integer, 
@@ -40,9 +41,9 @@ module WorkoutBuilder
             @user_id = user_id
         end
 
-        sig {void }
-        def complete_exercise
-            performance_data = {
+        sig { params(new_performance_data: T.nilable(Goal)).void }
+        def complete_exercise(new_performance_data: nil)
+            performance_data = new_performance_data || {
                 weight: @goal[:weight],
                 reps: @goal[:reps],
                 sets: @goal[:sets],
