@@ -48,10 +48,6 @@ module WorkoutBuilder
                 sets: @goal[:sets],
             }
 
-            puts performance_data
-
-            debugger
-
             exercise = @exercise_history.update!(
                 performance_data: performance_data,
                 completed: true,
