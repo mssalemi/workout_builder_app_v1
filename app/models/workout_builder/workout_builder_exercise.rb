@@ -7,16 +7,13 @@ module WorkoutBuilder
         Goal = T.type_alias { { weight: T.nilable(Integer), reps: T.nilable(Integer), sets: T.nilable(Integer) } }
 
         sig { returns(Integer) }
-        attr_reader :exercise_id
+        attr_reader :exercise_id, :workout_id, :user_id
 
         sig { returns(Goal) }
         attr_reader :goal
 
         sig { returns(T::Boolean) }
         attr_reader :completed
-
-        sig { returns(Integer) }
-        attr_reader :workout_id, :user_id
 
         #  WorkoutBuilder::WorkoutBuilderExercise.new(excercise_id: 1, exercise_history: ExerciseHistory.first, completed: false, goal: {weight: 100, reps: 10, sets: 3})
 

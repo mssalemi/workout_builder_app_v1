@@ -5,5 +5,6 @@ module Types
     field :id, Integer, null: false
     field :title, String, null: true
     field :user_id, Integer, null: false
+    field :exercises, [Types::WorkoutExerciseType], null: false
   end
 end
