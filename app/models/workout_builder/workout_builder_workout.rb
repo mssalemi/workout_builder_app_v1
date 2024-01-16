@@ -30,17 +30,13 @@ module WorkoutBuilder
             @user = user
         end
 
-        sig { params(exercise_id: Integer).returns(T::Array[WorkoutBuilderExercise]) }
-        def add_exercise(exercise_id:)
+        sig { params(exercise_id: Integer, performance_data: Goal).returns(T::Array[WorkoutBuilderExercise]) }
+        def add_exercise(exercise_id:, performance_data: {})
             exercise = WorkoutBuilderExercise.create_workout_exercise(
                 workout_id: @workout_id, 
                 user_id: @user.id, 
                 exercise_id: exercise_id, 
-                performance_data: {
-                    weight: 225,
-                    reps: 2,
-                    sets: 1,
-                }
+                performance_data: performance_data
             )
             
             @exercises << exercise if exercise
