@@ -15,6 +15,9 @@ module WorkoutBuilder
         sig { returns(T::Boolean) }
         attr_reader :completed
 
+        sig { returns(Integer) }
+        attr_reader :workout_id, :user_id
+
         #  WorkoutBuilder::WorkoutBuilderExercise.new(excercise_id: 1, exercise_history: ExerciseHistory.first, completed: false, goal: {weight: 100, reps: 10, sets: 3})
 
         sig { params(
