@@ -15,7 +15,7 @@ The API provides several queries and mutations to interact with workouts and exe
 
 ```graphql
 query FindWorkout {
-  findWorkout(workoutId: 4) {
+  findWorkout(workoutId: 1) {
     title
     exercises {
       completed
@@ -31,6 +31,22 @@ query FindWorkout {
     }
   }
 }
+
+mutation AddExerciseToWorkout {
+  addExerciseToWorkout(workoutId: 4, exerciseId: 1, performanceData: { reps:2, weight: 235, sets: 1 }) {
+      title
+    }
+  }
+```
+
+```graphql
+query GetExercise {
+    exercises {
+      title
+      description
+    }
+  }
+```
 
 ## Models
 The application uses the following primary models:
