@@ -15,21 +15,37 @@ module WorkoutBuilder
         attr_reader :user
         
         sig { returns(Integer) }
-        attr_reader :id, :user_id
+        attr_reader :user_id
 
-        sig { params(id: Integer, user_id: Integer, exercises: T::Array[WorkoutBuilderExercise]).void }
-        def initialize(id:, user_id:, exercises: [])
+        sig { params(workout_id: Integer, user_id: Integer, exercises: T::Array[WorkoutBuilderExercise]).void }
+        def initialize(workout_id:, user_id:, exercises: [])
             user = User.find_by(id: user_id)
             raise ActiveRecord::RecordNotFound if user.nil?
 
+            @workout_id = workout_id
             @exercises = T.let(exercises, T::Array[WorkoutBuilderExercise])
             @user = user
-            @id = T.let(1, Integer)
         end
 
-        def save
-            workout = Workout.create(user_id: @user.id, goal: {}, title: "Sample Workout")
-            workout
+        sig { params(exercise_id: Integer).returns(T::Array[WorkoutBuilderExercise]) }
+        def add_exercise(exercise_id:)
+            ## validate exercise exists?
+
+            ## Add exercise to workout by creating an exercise history via WorkoutBuilderExercise
+            exercise = WorkoutBuilderExercise.create_workout_exercise(
+                workout_id: @workout_id, 
+                user_id: @user.id, 
+                exercise_id: exercise_id, 
+                performance_data: {
+                    weight: 225,
+                    reps: 2,
+                    sets: 1,
+                }
+            )
+            
+            @exercises << exercise if exercise
+
+            exercises
         end
 
         sig { params(workout_id: Integer).returns(T.nilable(WorkoutBuilderWorkout)) }
@@ -50,16 +66,19 @@ module WorkoutBuilder
             end
 
             # Initialize a new instance with the data from the workout_record
-            workout_builder = new(id: workout_id, user_id: workout_record.user_id, exercises: exercises)
+            workout_builder = new(workout_id: workout_id, user_id: workout_record.user_id, exercises: exercises)
             workout_builder
         end
         # x = WorkoutBuilder::WorkoutBuilderWorkout.load_from_db(workout_id: 1)
 
-        private
+        sig { params(user_id: Integer, title: T.nilable(String)).returns(T.nilable(Workout)) }
+        def self.create_user_workout(user_id:, title: nil)
+            user = User.find_by(id: 1)
+            return nil if user.nil?
 
-        sig { params(id: String).returns(T.nilable(WorkoutBuilderExercise)) }
-        def find_exercise(id:)
-            @exercises.find { |exercise| exercise.id == id }
+            title = title || "Workout #{Time.now.to_i}"
+
+            Workout.create!(user_id: user_id, title: title, goal: {})
         end
     end 
 end

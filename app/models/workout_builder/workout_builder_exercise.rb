@@ -15,9 +15,6 @@ module WorkoutBuilder
         sig { returns(T::Boolean) }
         attr_reader :completed
 
-        sig { returns(String) }
-        attr_reader :id
-
         #  WorkoutBuilder::WorkoutBuilderExercise.new(excercise_id: 1, exercise_history: ExerciseHistory.first, completed: false, goal: {weight: 100, reps: 10, sets: 3})
 
         sig { params(
@@ -37,7 +34,6 @@ module WorkoutBuilder
             @exercise_history = exercise_history
             @goal = goal
             @completed = completed
-            @id = T.let(SecureRandom.uuid, String)
             @user_id = user_id
         end
 
@@ -61,6 +57,7 @@ module WorkoutBuilder
             exercise
         end
 
+        sig { params(exercise_history_id: Integer).returns(T.nilable(WorkoutBuilder::WorkoutBuilderExercise))}
         def self.load_from_db(exercise_history_id:)
             exercise_history = ExerciseHistory.includes(:exercise).find_by(id: exercise_history_id)
             return nil if exercise_history.nil?
@@ -80,5 +77,25 @@ module WorkoutBuilder
             )
         end
 
+        sig { params(workout_id: Integer, user_id: Integer, exercise_id: Integer, performance_data: Goal).returns(WorkoutBuilderExercise) }
+        def self.create_workout_exercise(workout_id:, user_id:, exercise_id:, performance_data:)
+            exercise_history = ExerciseHistory.create!(
+                exercise_id: exercise_id,
+                workout_id: workout_id,
+                user_id: user_id,
+                performance_data: performance_data,
+                completed: false,
+            )
+
+            raise ActiveRecord::RecordInvalid unless exercise_history.valid?
+
+            new(
+                exercise_id: exercise_id,
+                exercise_history: exercise_history,
+                goal: performance_data,
+                user_id: user_id,
+                completed: false,
+            )
+        end
     end 
 end
