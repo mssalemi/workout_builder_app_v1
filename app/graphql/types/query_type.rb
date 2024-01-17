@@ -38,7 +38,8 @@ module Types
         {
           exercise_id: exercise.exercise_id,
           completed: exercise.completed,
-          performance_data: exercise.goal
+          performance_data: exercise.goal,
+          order: exercise.order,
         }
       end
 

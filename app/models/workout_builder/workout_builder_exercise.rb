@@ -7,7 +7,7 @@ module WorkoutBuilder
         Goal = T.type_alias { { weight: T.nilable(Integer), reps: T.nilable(Integer), sets: T.nilable(Integer) } }
 
         sig { returns(Integer) }
-        attr_reader :exercise_id, :workout_id, :user_id
+        attr_reader :exercise_id, :workout_id, :user_id, :order
 
         sig { returns(Goal) }
         attr_reader :goal
@@ -22,19 +22,17 @@ module WorkoutBuilder
             exercise_history: ExerciseHistory, 
             completed: T::Boolean,
             goal: Goal, 
-            user_id: Integer
+            user_id: Integer,
+            order: Integer
             ).void 
         }
-        def initialize(exercise_id:, exercise_history:, completed:, goal: {
-            weight: nil,
-            reps: nil,
-            sets: nil,
-        }, user_id: 1)
+        def initialize(exercise_id:, exercise_history:, completed:, goal:, user_id:, order:)
             @exercise_id = exercise_id
             @exercise_history = exercise_history
-            @goal = goal
             @completed = completed
+            @goal = goal
             @user_id = user_id
+            @order = order
         end
 
         sig { params(new_performance_data: T.nilable(Goal)).void }
@@ -74,17 +72,22 @@ module WorkoutBuilder
                 goal: goal,
                 user_id: exercise_history.user_id,
                 completed: exercise_history.completed || false,
+                order: exercise_history.order,
             )
         end
 
         sig { params(workout_id: Integer, user_id: Integer, exercise_id: Integer, performance_data: Goal).returns(WorkoutBuilderExercise) }
         def self.create_workout_exercise(workout_id:, user_id:, exercise_id:, performance_data:)
+            
+            order = ExerciseHistory.where(workout_id: workout_id).count
+            
             exercise_history = ExerciseHistory.create!(
                 exercise_id: exercise_id,
                 workout_id: workout_id,
                 user_id: user_id,
                 performance_data: performance_data,
                 completed: false,
+                order: order,
             )
 
             raise ActiveRecord::RecordInvalid unless exercise_history.valid?
@@ -95,6 +98,7 @@ module WorkoutBuilder
                 goal: performance_data,
                 user_id: user_id,
                 completed: false,
+                order: exercise_history.order,
             )
         end
     end 

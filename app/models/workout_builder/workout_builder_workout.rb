@@ -58,6 +58,7 @@ module WorkoutBuilder
                     goal: history_record.performance_data.transform_keys(&:to_sym),
                     user_id: history_record.user_id,
                     completed: history_record.completed || false,
+                    order: history_record.order,
                 )
             end
 
