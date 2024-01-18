@@ -75,5 +75,38 @@ module Types
         exercise: Exercise.find(exercise.exercise_history.exercise_id)
       }
     end
+
+
+    field :complete_workout, Types::WorkoutType, null: false do
+      description "Complete all exercises in a workout"
+      argument :workout_id, ID, required: true
+    end
+    def complete_workout(workout_id:)
+      workout = WorkoutBuilder::WorkoutBuilderWorkout.load_from_db(workout_id: workout_id.to_i)
+      raise GraphQL::ExecutionError, "Workout not found" unless workout
+
+      status = workout.complete_workout
+      raise GraphQL::ExecutionError, "Failed to complete workout" unless status
+
+      exercises = workout.exercises.map do |exercise|
+        {
+          exercise_id: exercise.exercise_id,
+          workout_id: exercise.workout_id,
+          user_id: exercise.user_id,
+          completed: exercise.completed,
+          performance_data: exercise.goal,
+          order: exercise.order,
+          exercise_history_id: exercise.exercise_history.id
+        }
+      end
+
+      {
+        id: workout.workout_id,
+        title: workout.title,
+        exercises: exercises,
+        user_id: workout.user.id
+      }
+    end
+
   end
 end

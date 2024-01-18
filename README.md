@@ -23,13 +23,19 @@ query GetExercise {
 }
 
 mutation AddExerciseToWorkout {
-  addExerciseToWorkout(workoutId: 4, exerciseId: 1, performanceData: { reps:2, weight: 235, sets: 1 }) {
+  addExerciseToWorkout(workoutId: 5, exerciseId: 1, performanceData: { reps:2, weight: 235, sets: 1 }) {
     title
   }
 }
 
+mutation CreateWorkout {
+  createUserWorkout(userId: 1) {
+    id
+  }
+}
+
 query FindWorkout {
-  findWorkout(workoutId: 4) {
+  findWorkout(workoutId: 5) {
     title
     exercises {
       order
@@ -60,6 +66,13 @@ mutation EditWorkout {
     
   }
 }
+
+mutation CompleteWorkout {
+  completeWorkout(workoutId: 5) {
+    id
+  }
+}
+
 
 ```
 

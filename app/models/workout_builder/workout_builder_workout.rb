@@ -73,6 +73,19 @@ module WorkoutBuilder
         end
         # x = WorkoutBuilder::WorkoutBuilderWorkout.load_from_db(workout_id: 1)
 
+        sig { returns(T::Boolean) }
+        def complete_workout
+            begin
+                @exercises.each do |exercise|
+                    # Assuming default performance data is used for completion
+                    exercise.complete_exercise
+                end
+                true
+            rescue => e
+                false
+            end
+        end
+
         sig { params(user_id: Integer, title: T.nilable(String)).returns(T.nilable(Workout)) }
         def self.create_user_workout(user_id:, title: nil)
             user = User.find_by(id: 1)
