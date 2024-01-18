@@ -67,7 +67,7 @@ module WorkoutBuilder
                 workout_id: workout_id, 
                 user_id: workout_record.user_id, 
                 exercises: exercises, 
-                title: workout_record.title || "No Title"
+                title: workout_record.title || "No Title",
             )
             workout_builder
         end

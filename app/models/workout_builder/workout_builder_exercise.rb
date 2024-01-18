@@ -15,6 +15,9 @@ module WorkoutBuilder
         sig { returns(T::Boolean) }
         attr_reader :completed
 
+        sig { returns(ExerciseHistory) }
+        attr_reader :exercise_history
+
         #  WorkoutBuilder::WorkoutBuilderExercise.new(excercise_id: 1, exercise_history: ExerciseHistory.first, completed: false, goal: {weight: 100, reps: 10, sets: 3})
 
         sig { params(
@@ -53,6 +56,23 @@ module WorkoutBuilder
             @completed = true if exercise
 
             exercise
+        end
+
+        sig { params(new_order: T.nilable(Integer), new_performance_data: T.nilable(Goal)).void }
+        def edit_exercise(new_order: nil, new_performance_data: nil)
+            # Update the order if a new order is provided
+            if new_order
+                @order = new_order
+                # Update the corresponding field in the exercise history record
+                @exercise_history.update!(order: new_order)
+            end
+
+            # Update the performance data if new performance data is provided
+            if new_performance_data
+                @goal = new_performance_data
+                # Update the corresponding field in the exercise history record
+                @exercise_history.update!(performance_data: new_performance_data)
+            end
         end
 
         sig { params(exercise_history_id: Integer).returns(T.nilable(WorkoutBuilder::WorkoutBuilderExercise))}
