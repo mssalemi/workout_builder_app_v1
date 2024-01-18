@@ -9,21 +9,37 @@ The Workout Builder App is a GraphQL API designed to manage workouts for users. 
 - **Manage Workouts**: Create and find workouts for users.
 - **Exercise Tracking**: Add exercises to workouts with detailed performance data.
 
-## GraphQL Schema
+## GraphQL Schema - Example Queries
 
 The API provides several queries and mutations to interact with workouts and exercises. Below is an example query to find a workout and its associated exercises:
 
 ```graphql
+
+query GetExercise {
+	exercises {
+	  title
+    description
+	}
+}
+
+mutation AddExerciseToWorkout {
+  addExerciseToWorkout(workoutId: 4, exerciseId: 1, performanceData: { reps:2, weight: 235, sets: 1 }) {
+    title
+  }
+}
+
 query FindWorkout {
-  findWorkout(workoutId: 1) {
+  findWorkout(workoutId: 4) {
     title
     exercises {
+      order
       completed
       performanceData {
         reps
         weight
         sets
       }
+      exerciseHistoryId
       exercise {
         title
         bodyPartMain
@@ -32,20 +48,19 @@ query FindWorkout {
   }
 }
 
-mutation AddExerciseToWorkout {
-  addExerciseToWorkout(workoutId: 4, exerciseId: 1, performanceData: { reps:2, weight: 235, sets: 1 }) {
-      title
+mutation EditWorkout {
+  updateExerciseInWorkout(exerciseHistoryId: 268, newPerformanceData: {weight:230,reps:2, sets:1}) {
+		order
+    completed
+    performanceData {
+      weight
+      reps
+      sets
     }
+    
   }
-```
+}
 
-```graphql
-query GetExercise {
-    exercises {
-      title
-      description
-    }
-  }
 ```
 
 ## Models
