@@ -73,6 +73,34 @@ module WorkoutBuilder
         end
         # x = WorkoutBuilder::WorkoutBuilderWorkout.load_from_db(workout_id: 1)
 
+        sig { params(reorder_instructions: T::Array[T::Hash[Symbol, Integer]]).void }
+        def reorder_exercises(reorder_instructions)
+            # Check for duplicate exercise_history_id entries
+            history_ids = reorder_instructions.map { |instruction| instruction[:exercise_history_id] }
+            if history_ids.uniq.length != history_ids.length
+                raise ArgumentError, 'Duplicate exercise_history_id entries in reorder instructions'
+            end
+
+            reorder_instructions.each do |instruction|
+                exercise_history_id = instruction[:exercise_history_id].to_i
+                new_order = instruction[:new_order]
+
+                debugger
+                # Find the exercise in the @exercises array
+                exercise_to_reorder = @exercises.find do |exercise| 
+                exercise.exercise_history.id == exercise_history_id
+                end
+
+                next unless exercise_to_reorder
+
+                # Update the order of the exercise
+                exercise_to_reorder.edit_exercise(new_order: new_order)
+            end
+
+            # Optionally, sort @exercises by their new order
+            @exercises.sort_by!(&:order)
+        end
+
         sig { returns(T::Boolean) }
         def complete_workout
             begin

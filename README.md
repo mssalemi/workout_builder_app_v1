@@ -73,6 +73,21 @@ mutation CompleteWorkout {
   }
 }
 
+mutation Reorder {
+  reorderExercisesInWorkout(workoutId: 1, reorderInstructions:[{exerciseHistoryId: 258, newOrder:1},{newOrder: 0, exerciseHistoryId: 259}]) {
+    exercises {
+            order
+      completed
+      exerciseHistoryId
+      performanceData {
+        reps
+        weight
+        sets
+        
+      }
+    }
+  }
+}
 
 ```
 

@@ -75,6 +75,22 @@ module WorkoutBuilder
             end
         end
 
+        sig { params(exercise_id: Integer, new_order: Integer).returns(T.nilable(WorkoutBuilderExercise)) }
+        def reorder_exercise(exercise_id:, new_order:)
+            raise ArgumentError, 'Invalid order' if new_order < 0
+
+            exercise_to_reorder = @exercises.find { |exercise| exercise.exercise_id == exercise_id }
+            return nil unless exercise_to_reorder
+
+            # Updating the order of the exercise
+            exercise_to_reorder.edit_exercise(new_order: new_order)
+
+            # Optionally, reorder the other exercises to maintain a consistent ordering
+            # This step depends on how you want to manage the ordering logic
+
+            exercise_to_reorder
+        end
+
         sig { params(exercise_history_id: Integer).returns(T.nilable(WorkoutBuilder::WorkoutBuilderExercise))}
         def self.load_from_db(exercise_history_id:)
             exercise_history = ExerciseHistory.includes(:exercise).find_by(id: exercise_history_id)

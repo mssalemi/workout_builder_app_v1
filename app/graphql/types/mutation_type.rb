@@ -13,7 +13,7 @@ module Types
       int_user_id = user_id.to_i
       workout = WorkoutBuilder::WorkoutBuilderWorkout.create_user_workout(user_id: int_user_id, title: title)
       
-      workout
+      graphql_workout_type_return_data(workout)
     end
 
     field :add_exercise_to_workout, Types::WorkoutType, null: false do
@@ -31,24 +31,7 @@ module Types
       exercise = workout.add_exercise(exercise_id: exercise_id.to_i, performance_data: performance_data.to_h)
       raise GraphQL::ExecutionError, "Failed to add exercise" unless exercise
 
-      exercises = workout.exercises.map do |exercise|
-        {
-          exercise_id: exercise.exercise_id,
-          workout_id: exercise.workout_id,
-          user_id: exercise.user_id,
-          completed: exercise.completed,
-          performance_data: exercise.goal,
-          order: exercise.order,
-          exercise_history_id: exercise.exercise_history.id
-        }
-      end
-
-      {
-        id: workout.workout_id,
-        title: workout.title,
-        exercises: exercises,
-        user_id: workout.user.id
-      }
+      graphql_workout_type_return_data(workout)
     end
 
     field :update_exercise_in_workout, Types::WorkoutExerciseType, null: false do
@@ -67,15 +50,25 @@ module Types
       exercise.edit_exercise(new_order: new_order, new_performance_data: new_performance_data)
 
 
-      {
-        completed: exercise.completed,
-        performance_data: exercise.goal,
-        order: exercise.order,
-        exercise_history_id: exercise.exercise_history.id,
-        exercise: Exercise.find(exercise.exercise_history.exercise_id)
-      }
+      graphql_workout_exercise_type_return_data(exercise)
     end
 
+    field :reorder_exercises_in_workout, Types::WorkoutType, null: false do
+      description "Reorder exercises in a workout"
+      argument :workout_id, ID, required: true
+      argument :reorder_instructions, [Types::ReorderInstructionInputType], required: true
+    end
+    def reorder_exercises_in_workout(workout_id:, reorder_instructions:)
+      workout = WorkoutBuilder::WorkoutBuilderWorkout.load_from_db(workout_id: workout_id.to_i)
+      raise GraphQL::ExecutionError, "Workout not found" unless workout
+
+      # Convert GraphQL input to Ruby array of hashes
+      reorder_instructions = reorder_instructions.map(&:to_h)
+
+      workout.reorder_exercises(reorder_instructions)
+
+      graphql_workout_type_return_data(workout)
+    end
 
     field :complete_workout, Types::WorkoutType, null: false do
       description "Complete all exercises in a workout"
@@ -88,25 +81,28 @@ module Types
       status = workout.complete_workout
       raise GraphQL::ExecutionError, "Failed to complete workout" unless status
 
-      exercises = workout.exercises.map do |exercise|
-        {
-          exercise_id: exercise.exercise_id,
-          workout_id: exercise.workout_id,
-          user_id: exercise.user_id,
-          completed: exercise.completed,
-          performance_data: exercise.goal,
-          order: exercise.order,
-          exercise_history_id: exercise.exercise_history.id
-        }
-      end
+      graphql_workout_type_return_data(workout)
+    end
 
+    private
+
+    def graphql_workout_exercise_type_return_data(exercise)
       {
-        id: workout.workout_id,
-        title: workout.title,
-        exercises: exercises,
-        user_id: workout.user.id
+        completed: exercise.completed,
+        performance_data: exercise.goal,
+        order: exercise.order,
+        exercise_history_id: exercise.exercise_history.id,
+        exercise: Exercise.find(exercise.exercise_history.exercise_id)
       }
     end
 
+    def graphql_workout_type_return_data(workout)
+      {
+        id: workout.workout_id,
+        title: workout.title,
+        exercises: workout.exercises.map { |exercise| graphql_workout_exercise_type_return_data(exercise) },
+        user_id: workout.user.id
+      }
+    end
   end
 end
