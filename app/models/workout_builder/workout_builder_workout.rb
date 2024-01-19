@@ -88,7 +88,7 @@ module WorkoutBuilder
                 debugger
                 # Find the exercise in the @exercises array
                 exercise_to_reorder = @exercises.find do |exercise| 
-                exercise.exercise_history.id == exercise_history_id
+                    exercise.exercise_history.id == exercise_history_id
                 end
 
                 next unless exercise_to_reorder
