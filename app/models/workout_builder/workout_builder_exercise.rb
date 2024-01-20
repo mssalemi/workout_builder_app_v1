@@ -138,14 +138,14 @@ module WorkoutBuilder
             )
         end
 
-        sig { params(exercise: WorkoutBuilderExercise).returns(Hash) }
-        def graphql_type(exercise:)
+        sig { returns(Hash) }
+        def graphql_data
             {
-                completed: exercise.completed,
-                performance_data: exercise.goal,
-                order: exercise.order,
-                exercise_history_id: exercise.exercise_history.id,
-                exercise_id: exercise.exercise_id,
+                completed: self.completed,
+                performance_data: self.goal,
+                order: self.order,
+                exercise_history_id: self.exercise_history.id,
+                exercise_id: self.exercise_id,
             }
         end
 

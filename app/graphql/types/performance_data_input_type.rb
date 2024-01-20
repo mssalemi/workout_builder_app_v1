@@ -4,5 +4,6 @@ module Types
       argument :weight, Integer, required: false
       argument :reps, Integer, required: false
       argument :sets, Integer, required: false
+      argument :rpe, Integer, required: false
     end
 end

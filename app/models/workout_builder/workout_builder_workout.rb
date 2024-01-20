@@ -84,8 +84,7 @@ module WorkoutBuilder
             reorder_instructions.each do |instruction|
                 exercise_history_id = instruction[:exercise_history_id].to_i
                 new_order = instruction[:new_order]
-
-                debugger
+                
                 # Find the exercise in the @exercises array
                 exercise_to_reorder = @exercises.find do |exercise| 
                     exercise.exercise_history.id == exercise_history_id
@@ -124,13 +123,13 @@ module WorkoutBuilder
             Workout.create!(user_id: user_id, title: title, goal: {})
         end
 
-        sig { params(workout: WorkoutBuilderWorkout).returns(Hash) }
-        def graphql_data(workout:)
+        sig { returns(Hash) }
+        def graphql_data
             {
-                id: workout.workout_id,
-                title: workout.title,
-                user_id: workout.user.id,
-                exercises: workout.exercises.map { |exercise| exercise.graphql_type(exercise: exercise)},
+                id: self.workout_id,
+                title: self.title,
+                user_id: self.user.id,
+                exercises: self.exercises.map { |exercise| exercise.graphql_data },
               }
         end
     end 

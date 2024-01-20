@@ -18,7 +18,7 @@ module Types
 
       return nil unless workout  
 
-      workout.graphql_data(workout: workout)
+      workout.graphql_data
     end
   end
 end
