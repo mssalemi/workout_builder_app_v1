@@ -5,7 +5,7 @@ module Mutations
       description "Update an exercise's order or performance data in a workout"
   
       # Define the arguments this mutation accepts
-      argument :exercise_history_id, ID, required: true, description: "The ID of the exercise history record to update."
+      argument :exercise_history_id, Integer, required: true, description: "The ID of the exercise history record to update."
       argument :new_order, Integer, required: false, description: "The new order for the exercise within the workout."
       argument :new_performance_data, Types::PerformanceDataInputType, required: false, description: "New performance data for the exercise."
   
