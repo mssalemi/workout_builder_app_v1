@@ -31,7 +31,12 @@ module WorkoutBuilder
         end
 
         sig { params(exercise_id: Integer, performance_data: Goal).returns(T::Array[WorkoutBuilderExercise]) }
-        def add_exercise(exercise_id:, performance_data: {})
+        def add_exercise(exercise_id:, performance_data: {
+            weight: 0,
+            reps: 0,
+            sets: 0,
+            rpe: 0,
+        })
             exercise = WorkoutBuilderExercise.create_workout_exercise(
                 workout_id: @workout_id, 
                 user_id: @user.id, 
@@ -58,7 +63,7 @@ module WorkoutBuilder
                     goal: history_record.performance_data.transform_keys(&:to_sym),
                     user_id: history_record.user_id,
                     completed: history_record.completed || false,
-                    order: history_record.order,
+                    order: history_record.order || 0,
                 )
             end
 

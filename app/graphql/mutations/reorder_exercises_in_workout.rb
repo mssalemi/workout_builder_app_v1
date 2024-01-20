@@ -5,7 +5,7 @@ module Mutations
       description "Reorder exercises in a workout"
   
       # Define the arguments this mutation accepts
-      argument :workout_id, ID, required: true, description: "The ID of the workout to reorder exercises in."
+      argument :workout_id, Integer, required: true, description: "The ID of the workout to reorder exercises in."
       argument :reorder_instructions, [Types::ReorderInstructionInputType], required: true, description: "The instructions for reordering the exercises."
   
       type Types::WorkoutType

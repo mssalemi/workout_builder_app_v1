@@ -229,6 +229,20 @@ class Workout
     sig { params(args: T.untyped, blk: T.untyped).returns(::User) }
     def create_user!(*args, &blk); end
 
+    # This method is created by ActiveRecord on the `Workout` class because it declared `has_many :exercise_histories`.
+    # 🔗 [Rails guide for `has_many` association](https://guides.rubyonrails.org/association_basics.html#the-has-many-association)
+    sig { returns(::ExerciseHistory::PrivateCollectionProxy) }
+    def exercise_histories; end
+
+    sig { params(value: T::Enumerable[::ExerciseHistory]).void }
+    def exercise_histories=(value); end
+
+    sig { returns(T::Array[T.untyped]) }
+    def exercise_history_ids; end
+
+    sig { params(ids: T::Array[T.untyped]).returns(T::Array[T.untyped]) }
+    def exercise_history_ids=(ids); end
+
     sig { returns(T.nilable(::User)) }
     def reload_user; end
 

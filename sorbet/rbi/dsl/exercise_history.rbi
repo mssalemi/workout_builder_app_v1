@@ -780,6 +780,51 @@ class ExerciseHistory
     sig { void }
     def id_will_change!; end
 
+    sig { returns(T.nilable(::Integer)) }
+    def order; end
+
+    sig { params(value: T.nilable(::Integer)).returns(T.nilable(::Integer)) }
+    def order=(value); end
+
+    sig { returns(T::Boolean) }
+    def order?; end
+
+    sig { returns(T.nilable(::Integer)) }
+    def order_before_last_save; end
+
+    sig { returns(T.untyped) }
+    def order_before_type_cast; end
+
+    sig { returns(T::Boolean) }
+    def order_came_from_user?; end
+
+    sig { returns(T.nilable([T.nilable(::Integer), T.nilable(::Integer)])) }
+    def order_change; end
+
+    sig { returns(T.nilable([T.nilable(::Integer), T.nilable(::Integer)])) }
+    def order_change_to_be_saved; end
+
+    sig { params(from: T.nilable(::Integer), to: T.nilable(::Integer)).returns(T::Boolean) }
+    def order_changed?(from: T.unsafe(nil), to: T.unsafe(nil)); end
+
+    sig { returns(T.nilable(::Integer)) }
+    def order_in_database; end
+
+    sig { returns(T.nilable([T.nilable(::Integer), T.nilable(::Integer)])) }
+    def order_previous_change; end
+
+    sig { params(from: T.nilable(::Integer), to: T.nilable(::Integer)).returns(T::Boolean) }
+    def order_previously_changed?(from: T.unsafe(nil), to: T.unsafe(nil)); end
+
+    sig { returns(T.nilable(::Integer)) }
+    def order_previously_was; end
+
+    sig { returns(T.nilable(::Integer)) }
+    def order_was; end
+
+    sig { void }
+    def order_will_change!; end
+
     sig { returns(T.untyped) }
     def performance_data; end
 
@@ -844,6 +889,9 @@ class ExerciseHistory
     def restore_id_value!; end
 
     sig { void }
+    def restore_order!; end
+
+    sig { void }
     def restore_performance_data!; end
 
     sig { void }
@@ -890,6 +938,12 @@ class ExerciseHistory
 
     sig { returns(T::Boolean) }
     def saved_change_to_id_value?; end
+
+    sig { returns(T.nilable([T.nilable(::Integer), T.nilable(::Integer)])) }
+    def saved_change_to_order; end
+
+    sig { returns(T::Boolean) }
+    def saved_change_to_order?; end
 
     sig { returns(T.nilable([T.untyped, T.untyped])) }
     def saved_change_to_performance_data; end
@@ -1022,6 +1076,9 @@ class ExerciseHistory
 
     sig { returns(T::Boolean) }
     def will_save_change_to_id_value?; end
+
+    sig { returns(T::Boolean) }
+    def will_save_change_to_order?; end
 
     sig { returns(T::Boolean) }
     def will_save_change_to_performance_data?; end

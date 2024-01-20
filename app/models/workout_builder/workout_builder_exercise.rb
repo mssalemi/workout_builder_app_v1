@@ -44,6 +44,7 @@ module WorkoutBuilder
                 weight: @goal[:weight],
                 reps: @goal[:reps],
                 sets: @goal[:sets],
+                rpe: @goal[:rpe],
             }
 
             exercise = @exercise_history.update!(
@@ -100,6 +101,7 @@ module WorkoutBuilder
                 weight: exercise_history.performance_data["weight"],
                 reps: exercise_history.performance_data["reps"],
                 sets: exercise_history.performance_data["sets"],
+                rpe: exercise_history.performance_data["rpe"],
             }
 
             new(
@@ -108,7 +110,7 @@ module WorkoutBuilder
                 goal: goal,
                 user_id: exercise_history.user_id,
                 completed: exercise_history.completed || false,
-                order: exercise_history.order,
+                order: 0,
             )
         end
 
@@ -134,7 +136,7 @@ module WorkoutBuilder
                 goal: performance_data,
                 user_id: user_id,
                 completed: false,
-                order: exercise_history.order,
+                order: exercise_history.order || 0,
             )
         end
 

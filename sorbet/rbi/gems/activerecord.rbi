@@ -3265,11 +3265,11 @@ class ActiveRecord::Associations::Builder::SingularAssociation < ActiveRecord::A
 end
 class ActiveRecord::Associations::Builder::BelongsTo < ActiveRecord::Associations::Builder::SingularAssociation
 end
-class ActiveRecord::Associations::Builder::HasOne < ActiveRecord::Associations::Builder::SingularAssociation
-end
 class ActiveRecord::Associations::Builder::CollectionAssociation < ActiveRecord::Associations::Builder::Association
 end
 class ActiveRecord::Associations::Builder::HasMany < ActiveRecord::Associations::Builder::CollectionAssociation
+end
+class ActiveRecord::Associations::Builder::HasOne < ActiveRecord::Associations::Builder::SingularAssociation
 end
 module ActiveRecord::Coders::JSON
 end
@@ -3370,6 +3370,32 @@ class ActiveRecord::FutureResult::SelectAll < ActiveRecord::FutureResult
 end
 class ActiveRecord::Result
   include Enumerable
+end
+class ActiveRecord::Associations::Association
+end
+class ActiveRecord::Associations::SingularAssociation < ActiveRecord::Associations::Association
+end
+class ActiveRecord::Associations::BelongsToAssociation < ActiveRecord::Associations::SingularAssociation
+end
+class ActiveRecord::Associations::AssociationScope
+end
+class ActiveRecord::Associations::AssociationScope::ReflectionProxy < SimpleDelegator
+end
+class ActiveRecord::Associations::AliasTracker
+end
+class ActiveRecord::StatementCache
+end
+class ActiveRecord::StatementCache::Substitute
+end
+class ActiveRecord::StatementCache::Query
+end
+class ActiveRecord::StatementCache::PartialQuery < ActiveRecord::StatementCache::Query
+end
+class ActiveRecord::StatementCache::PartialQueryCollector
+end
+class ActiveRecord::StatementCache::Params
+end
+class ActiveRecord::StatementCache::BindMap
 end
 class ActiveRecord::InternalMetadata
 end
