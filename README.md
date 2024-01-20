@@ -17,25 +17,27 @@ The API provides several queries and mutations to interact with workouts and exe
 
 query GetExercise {
 	exercises {
-	  title
-    description
+	  id        
+    title
+    bodyPartMain
+    bodyPartAccessory
 	}
 }
 
 mutation AddExerciseToWorkout {
-  addExerciseToWorkout(workoutId: 5, exerciseId: 1, performanceData: { reps:2, weight: 235, sets: 1 }) {
+  addExerciseToWorkout(input: {workoutId: 27, exerciseId: 1, performanceData: { reps:10, weight: 120, sets: 1 }}) {
     title
   }
 }
 
 mutation CreateWorkout {
-  createUserWorkout(userId: 1) {
+  createUserWorkout(input: {userId: 1, title: "Cycle 3 - Week 1 - Bench Day 1"}) {
     id
   }
 }
 
 query FindWorkout {
-  findWorkout(workoutId: 5) {
+  findWorkout(workoutId: 27) {
     title
     exercises {
       order
@@ -44,6 +46,7 @@ query FindWorkout {
         reps
         weight
         sets
+        rpe
       }
       exerciseHistoryId
       exercise {
@@ -55,26 +58,27 @@ query FindWorkout {
 }
 
 mutation EditWorkout {
-  updateExerciseInWorkout(exerciseHistoryId: 268, newPerformanceData: {weight:230,reps:2, sets:1}) {
+  updateExerciseInWorkout(input: {exerciseHistoryId: 288, newPerformanceData: {weight:230,reps:2, sets:1, rpe: 11}}) {
 		order
     completed
     performanceData {
       weight
       reps
       sets
+      rpe
     }
     
   }
 }
 
 mutation CompleteWorkout {
-  completeWorkout(workoutId: 5) {
+  completeWorkout(input: {workoutId: 26}) {
     id
   }
 }
 
 mutation Reorder {
-  reorderExercisesInWorkout(workoutId: 1, reorderInstructions:[{exerciseHistoryId: 258, newOrder:1},{newOrder: 0, exerciseHistoryId: 259}]) {
+  reorderExercisesInWorkout(input: {workoutId: 26, reorderInstructions:[{exerciseHistoryId: 288, newOrder:1},{newOrder: 0, exerciseHistoryId: 289}]}) {
     exercises {
             order
       completed
@@ -88,6 +92,7 @@ mutation Reorder {
     }
   }
 }
+
 
 ```
 

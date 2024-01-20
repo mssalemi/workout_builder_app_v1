@@ -2,17 +2,8 @@
 
 module Types
   class MutationType < Types::BaseObject
-    field :create_user_workout, Types::WorkoutType, null: false do
-      description "Create a new workout for a user"
-      argument :user_id, Integer, required: true
-      argument :title, String, required: false
-    end
 
-    def create_user_workout(user_id:, title: nil)
-      # raise "not allowed right now"
-      int_user_id = user_id.to_i
-      WorkoutBuilder::WorkoutBuilderWorkout.create_user_workout(user_id: int_user_id, title: title)
-    end
+    field :create_user_workout, mutation: Mutations::CreateUserWorkout
 
     field :add_exercise_to_workout, Types::WorkoutType, null: false do
       description "Add an exercise to a workout"
