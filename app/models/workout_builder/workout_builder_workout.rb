@@ -5,7 +5,7 @@ module WorkoutBuilder
         extend T::Sig
 
         GoalUpdate = T.type_alias { { workout_exercise_id: Integer, new_goal: WorkoutBuilderExercise::Goal } }
-        Goal = T.type_alias { { weight: T.nilable(Integer), reps: T.nilable(Integer), sets: T.nilable(Integer) } }
+        Goal = T.type_alias { { weight: T.nilable(Integer), reps: T.nilable(Integer), sets: T.nilable(Integer), rpe: T.nilable(Integer) } }
 
         sig { returns(T::Array[WorkoutBuilderExercise]) }
         attr_reader :exercises
@@ -122,6 +122,16 @@ module WorkoutBuilder
             title = title || "Workout #{Time.now.to_i}"
 
             Workout.create!(user_id: user_id, title: title, goal: {})
+        end
+
+        sig { params(workout: WorkoutBuilderWorkout).returns(Hash) }
+        def graphql_data(workout:)
+            {
+                id: workout.workout_id,
+                title: workout.title,
+                user_id: workout.user.id,
+                exercises: workout.exercises.map { |exercise| exercise.graphql_type(exercise: exercise)},
+              }
         end
     end 
 end

@@ -4,7 +4,7 @@ module WorkoutBuilder
     class WorkoutBuilderExercise
         extend T::Sig
 
-        Goal = T.type_alias { { weight: T.nilable(Integer), reps: T.nilable(Integer), sets: T.nilable(Integer) } }
+        Goal = T.type_alias { { weight: T.nilable(Integer), reps: T.nilable(Integer), sets: T.nilable(Integer), rpe: T.nilable(Integer) } }
 
         sig { returns(Integer) }
         attr_reader :exercise_id, :workout_id, :user_id, :order
@@ -137,5 +137,17 @@ module WorkoutBuilder
                 order: exercise_history.order,
             )
         end
+
+        sig { params(exercise: WorkoutBuilderExercise).returns(Hash) }
+        def graphql_type(exercise:)
+            {
+                completed: exercise.completed,
+                performance_data: exercise.goal,
+                order: exercise.order,
+                exercise_history_id: exercise.exercise_history.id,
+                exercise_id: exercise.exercise_id,
+            }
+        end
+
     end 
 end

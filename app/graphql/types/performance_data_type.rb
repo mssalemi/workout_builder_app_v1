@@ -4,5 +4,6 @@ module Types
       field :weight, Integer, null: true
       field :reps, Integer, null: true
       field :sets, Integer, null: true
+      field :rpe, Integer, null: true
     end
 end
