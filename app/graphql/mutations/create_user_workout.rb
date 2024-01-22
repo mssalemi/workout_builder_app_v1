@@ -14,7 +14,11 @@ module Mutations
         sig { params(user_id: Integer, title: T.nilable(String)).returns(Workout) }
         def resolve(user_id:, title: nil)
             int_user_id = user_id.to_i
-            WorkoutBuilder::WorkoutBuilderWorkout.create_user_workout(user_id: int_user_id, title: title)
+            workout = WorkoutBuilder::WorkoutBuilderWorkout.create_user_workout(user_id: int_user_id, title: title)
+
+            raise GraphQL::ExecutionError, "Failed to create workout" unless workout
+
+            workout
         end
     end
 end
