@@ -12,7 +12,7 @@ module Types
       description "Find a workout by ID"
       argument :workout_id, GraphQL::Types::ID, required: true
     end
-
+    
     def find_workout(workout_id:)
       workout = WorkoutBuilder::WorkoutBuilderWorkout.load_from_db(workout_id: workout_id.to_i)
 

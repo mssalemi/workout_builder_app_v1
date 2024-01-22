@@ -4,8 +4,7 @@ module Mutations
     class CompleteWorkout < BaseMutation
       description "Complete all exercises in a workout"
   
-      # Define the arguments this mutation accepts
-      argument :workout_id, ID, required: true, description: "The ID of the workout to be completed."
+      argument :workout_id, Integer, required: true, description: "The ID of the workout to be completed."
   
       type Types::WorkoutType
   
