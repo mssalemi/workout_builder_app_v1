@@ -11,7 +11,7 @@ module Mutations
     
         type Types::WorkoutType
         
-        sig { params(user_id: Integer, title: T.nilable(String)).returns(Types::WorkoutType) }
+        sig { params(user_id: Integer, title: T.nilable(String)).returns(T::Hash[T.untyped, T.untyped]) }
         def resolve(user_id:, title: nil)
             int_user_id = user_id.to_i
             WorkoutBuilder::WorkoutBuilderWorkout.create_user_workout(user_id: int_user_id, title: title)

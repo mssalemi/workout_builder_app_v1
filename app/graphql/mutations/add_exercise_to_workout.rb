@@ -12,7 +12,7 @@ module Mutations
   
       type Types::WorkoutType
       
-      sig { params(workout_id: Integer, exercise_id: Integer, performance_data: Types::PerformanceDataInputType).returns(Types::WorkoutType) }
+      sig { params(workout_id: Integer, exercise_id: Integer, performance_data: Types::PerformanceDataInputType).returns(T::Hash[T.untyped, T.untyped]) }
       def resolve(workout_id:, exercise_id:, performance_data:)
         workout = WorkoutBuilder::WorkoutBuilderWorkout.load_from_db(workout_id: workout_id.to_i)
         raise GraphQL::ExecutionError, "Workout not found" unless workout
