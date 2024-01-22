@@ -2,6 +2,8 @@
 
 module Mutations
     class ReorderExercisesInWorkout < BaseMutation
+      extend T::Sig
+
       description "Reorder exercises in a workout"
   
       # Define the arguments this mutation accepts
@@ -9,7 +11,8 @@ module Mutations
       argument :reorder_instructions, [Types::ReorderInstructionInputType], required: true, description: "The instructions for reordering the exercises."
   
       type Types::WorkoutType
-  
+      
+      sig { params(workout_id: Integer, reorder_instructions: [Types::ReorderInstructionInputType]).returns(Types::WorkoutType)}
       def resolve(workout_id:, reorder_instructions:)
         workout = WorkoutBuilder::WorkoutBuilderWorkout.load_from_db(workout_id: workout_id.to_i)
         raise GraphQL::ExecutionError, "Workout not found" unless workout
