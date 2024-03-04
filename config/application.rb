@@ -10,6 +10,7 @@ module WorkoutBuilderAppV1
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.1
+    config.api_only = true
 
     # Please, add to the `ignore` list any other `lib` subdirectories that do
     # not contain `.rb` files, or that should not be reloaded or eager loaded.
@@ -23,5 +24,13 @@ module WorkoutBuilderAppV1
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+
+    # Configure CORS
+    config.middleware.insert_before 0, Rack::Cors do
+      allow do
+        origins 'localhost:3001', '127.0.0.1:3001' # Replace with your React app's host and port
+        resource '/graphql', headers: :any, methods: [:get, :post, :options]
+      end
+    end
   end
 end
