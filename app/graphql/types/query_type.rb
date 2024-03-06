@@ -36,4 +36,5 @@ module Types
       end.map(&:graphql_data) # Ensure your Workout model or builder has a method `graphql_data` to format the data for GraphQL response
     end
   end
+  
 end
