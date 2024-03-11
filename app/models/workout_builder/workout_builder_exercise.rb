@@ -117,7 +117,8 @@ module WorkoutBuilder
         sig { params(workout_id: Integer, user_id: Integer, exercise_id: Integer, performance_data: Goal).returns(WorkoutBuilderExercise) }
         def self.create_workout_exercise(workout_id:, user_id:, exercise_id:, performance_data:)
             
-            order = ExerciseHistory.where(workout_id: workout_id).count
+            existing = ExerciseHistory.where(workout_id: workout_id)
+            order = existing.count + 1
             
             exercise_history = ExerciseHistory.create!(
                 exercise_id: exercise_id,
@@ -148,6 +149,7 @@ module WorkoutBuilder
                 order: self.order,
                 exercise_history_id: self.exercise_history.id,
                 exercise_id: self.exercise_id,
+                user_id: self.user_id,
             }
         end
 

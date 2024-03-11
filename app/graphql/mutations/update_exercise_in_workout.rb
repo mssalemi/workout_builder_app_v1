@@ -18,7 +18,11 @@ module Mutations
         raise GraphQL::ExecutionError, "Exercise not found" unless exercise
   
         new_performance_data = new_performance_data.to_h if new_performance_data
-  
+
+        puts "TRYING TO UPDATE EXERCISE"
+        puts "new_order: #{new_order}"
+        puts "new_performance_data: #{new_performance_data}"
+        puts "exercise: #{exercise}"
         exercise.edit_exercise(new_order: new_order, new_performance_data: new_performance_data)
   
         exercise.graphql_data

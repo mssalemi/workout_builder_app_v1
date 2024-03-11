@@ -30,16 +30,17 @@ module WorkoutBuilder
             @user = user
         end
 
-        sig { params(exercise_id: Integer, performance_data: Goal).returns(T::Array[WorkoutBuilderExercise]) }
+        sig { params(exercise_id: Integer, performance_data: Goal, user_id: T.nilable(Integer)).returns(T::Array[WorkoutBuilderExercise]) }
         def add_exercise(exercise_id:, performance_data: {
             weight: 0,
             reps: 0,
             sets: 0,
             rpe: 0,
-        })
+        }, user_id: nil)
+        puts "DID WE GET A USER ID", user_id
             exercise = WorkoutBuilderExercise.create_workout_exercise(
                 workout_id: @workout_id, 
-                user_id: @user.id, 
+                user_id: user_id || @user.id, 
                 exercise_id: exercise_id, 
                 performance_data: performance_data
             )
@@ -130,6 +131,10 @@ module WorkoutBuilder
 
         sig { returns(Hash) }
         def graphql_data
+            puts "workout_id: #{@workout_id}"
+            puts "title: #{@title}"
+            puts "user.id: #{user.id}"
+            
             {
                 id: self.workout_id,
                 title: self.title,

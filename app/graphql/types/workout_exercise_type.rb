@@ -9,6 +9,7 @@ module Types
         field :exercise, ExerciseType, null: false, description: "Exercise"
         field :order, Integer, null: false, description: "Order of the exercise in the workout"
         field :exercise_history_id, Integer, null: false, description: "Exercise history ID"
+        field :user_id, Integer, null: false, description: "User ID"
 
         sig { returns(Exercise) }
         def exercise
