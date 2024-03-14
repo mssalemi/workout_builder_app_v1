@@ -52,6 +52,8 @@ gem 'graphiql-rails', group: :development
 
 # Gemfile
 gem 'rack-cors', require: 'rack/cors'
+gem 'bcrypt', '~> 3.1.7'
+gem 'jwt'
 
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]

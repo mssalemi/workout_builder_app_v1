@@ -28,27 +28,3 @@ class Rack::Session::Abstract::PersistedSecure::SecureSessionHash < Rack::Sessio
 end
 class Rack::Session::Abstract::ID < Rack::Session::Abstract::Persisted
 end
-class Rack::Session::Encryptor
-end
-class Rack::Session::Encryptor::Error < StandardError
-end
-class Rack::Session::Encryptor::InvalidSignature < Rack::Session::Encryptor::Error
-end
-class Rack::Session::Encryptor::InvalidMessage < Rack::Session::Encryptor::Error
-end
-class Rack::Session::Cookie < Rack::Session::Abstract::PersistedSecure
-end
-class Rack::Session::Cookie::Base64
-end
-class Rack::Session::Cookie::Base64::Marshal < Rack::Session::Cookie::Base64
-end
-class Rack::Session::Cookie::Base64::JSON < Rack::Session::Cookie::Base64
-end
-class Rack::Session::Cookie::Base64::ZipJSON < Rack::Session::Cookie::Base64
-end
-class Rack::Session::Cookie::Identity
-end
-class Rack::Session::Cookie::Marshal
-end
-class Rack::Session::Cookie::SessionId < Anonymous_Delegator_58
-end

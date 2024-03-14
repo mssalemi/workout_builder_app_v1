@@ -134,6 +134,8 @@ module WorkoutBuilder
             puts "workout_id: #{@workout_id}"
             puts "title: #{@title}"
             puts "user.id: #{user.id}"
+
+            puts "exercises: #{self.exercises.map { |exercise| exercise.graphql_data }}"
             
             {
                 id: self.workout_id,

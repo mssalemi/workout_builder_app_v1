@@ -115,3 +115,40 @@ bin/tapioca dsl
 srb typecheck
 bundle exec srb rbi update
 ```
+
+### I asked Chat GPT, how to add user auth, and some suggestions for improvements:
+Adding user authentication/authorization and expanding the API with new features while keeping the existing structure intact is a great way to improve your workout app. Let's break down the improvements into two parts: implementing user authentication/authorization and suggesting new queries/mutations.
+
+Implementing User Authentication/Authorization
+For user authentication and authorization, using JWT (JSON Web Tokens) is a common and effective approach. You can integrate JWT without major disruptions to your current API design. Here's a simplified outline of how you can do this:
+
+Add Authentication Endpoint: Create a new mutation for user authentication, e.g., userLogin. This mutation should accept credentials (like username and password), authenticate the user against your database, and return a JWT upon successful authentication.
+
+Token Creation and Validation: Use a gem like jwt to handle token creation and validation. The token should include claims like the user ID and expiration time.
+
+Authorize Requests: In your GraphQL controller, before processing any request, validate the JWT token passed in the request headers. If the token is valid, proceed with the request; otherwise, return an authentication error.
+
+User Context: Upon successful token validation, you could set a current user context that can be accessed in your resolvers to apply user-specific logic and permissions.
+
+Suggesting New Queries/Mutations
+With authentication in place, you can safely add user-specific data and actions. Here are some ideas:
+
+User Profile Management:
+
+Queries to fetch user profiles, and mutations to update user details, change passwords, or set user preferences.
+Advanced Workout Filtering:
+
+Queries to filter workouts by different parameters like difficulty, duration, type (cardio, strength, etc.), or custom tags.
+Social Features:
+
+Mutations to follow/unfollow users, and queries to fetch workouts shared by followed users or trending in the user community.
+Workout Feedback and Analytics:
+
+Mutations to rate a workout or provide feedback, and queries to fetch user workout history, statistics, or progress over time.
+Personalized Workout Plans:
+
+Queries to get personalized workout recommendations based on user goals, preferences, or past workouts, and mutations to subscribe to or customize these plans.
+Integration with External Services:
+
+If you plan on integrating with fitness trackers or other external services, you could add queries/mutations to sync data, fetch external workout sessions, or update user settings on those platforms.
+For each new feature, consider how it will be used by your front-end clients and the permissions required. Make sure to structure your queries and mutations to be flexible enough to accommodate different client needs while ensuring data security and privacy through proper authorization checks.

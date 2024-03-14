@@ -374,17 +374,17 @@ class ActiveModel::Type::Boolean < ActiveModel::Type::Value
 end
 class ActiveModel::Type::Date < ActiveModel::Type::Value
   include ActiveModel::Type::Helpers::Timezone
-  include Anonymous_ActiveModel_Type_Helpers_AcceptsMultiparameterTime_19
+  include Anonymous_ActiveModel_Type_Helpers_AcceptsMultiparameterTime_18
 end
-module Anonymous_ActiveModel_Type_Helpers_AcceptsMultiparameterTime_19
+module Anonymous_ActiveModel_Type_Helpers_AcceptsMultiparameterTime_18
   include ActiveModel::Type::Helpers::AcceptsMultiparameterTime::InstanceMethods
 end
 class ActiveModel::Type::DateTime < ActiveModel::Type::Value
   include ActiveModel::Type::Helpers::TimeValue
   include ActiveModel::Type::Helpers::Timezone
-  include Anonymous_ActiveModel_Type_Helpers_AcceptsMultiparameterTime_20
+  include Anonymous_ActiveModel_Type_Helpers_AcceptsMultiparameterTime_19
 end
-module Anonymous_ActiveModel_Type_Helpers_AcceptsMultiparameterTime_20
+module Anonymous_ActiveModel_Type_Helpers_AcceptsMultiparameterTime_19
   include ActiveModel::Type::Helpers::AcceptsMultiparameterTime::InstanceMethods
 end
 class ActiveModel::Type::Decimal < ActiveModel::Type::Value
@@ -400,9 +400,9 @@ end
 class ActiveModel::Type::Time < ActiveModel::Type::Value
   include ActiveModel::Type::Helpers::TimeValue
   include ActiveModel::Type::Helpers::Timezone
-  include Anonymous_ActiveModel_Type_Helpers_AcceptsMultiparameterTime_21
+  include Anonymous_ActiveModel_Type_Helpers_AcceptsMultiparameterTime_20
 end
-module Anonymous_ActiveModel_Type_Helpers_AcceptsMultiparameterTime_21
+module Anonymous_ActiveModel_Type_Helpers_AcceptsMultiparameterTime_20
   include ActiveModel::Type::Helpers::AcceptsMultiparameterTime::InstanceMethods
 end
 class ActiveModel::Type::Registry

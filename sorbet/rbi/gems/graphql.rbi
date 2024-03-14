@@ -3085,9 +3085,9 @@ class GraphQL::Schema::UnresolvedLateBoundTypeError < GraphQL::Error
 end
 class GraphQL::Schema::InvalidDocumentError < GraphQL::Error
 end
-module InvalidName___Class_0x00___DefaultTraceClass_50
+module InvalidName___Class_0x00___DefaultTraceClass_49
 end
-module InvalidName___Class_0x00___ResolveTypeWithType_51
+module InvalidName___Class_0x00___ResolveTypeWithType_50
   def resolve_type(type, obj, ctx); end
 end
 module GraphQL::Schema::SubclassGetReferencesTo

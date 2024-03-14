@@ -1,3 +1,4 @@
+# typed: true
 class Types::ArrayStringType < GraphQL::Schema::Scalar
   description "An array of strings"
   
