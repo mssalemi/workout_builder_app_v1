@@ -18,8 +18,6 @@ module Mutations
         workout = WorkoutBuilder::WorkoutBuilderWorkout.load_from_db(workout_id: workout_id.to_i)
         raise GraphQL::ExecutionError, "Workout not found" unless workout
 
-        puts "🪬🪬🪬🪬🪬 DID WE GET A USER ID", user_id
-  
         workout.add_exercise(exercise_id: exercise_id.to_i, performance_data: performance_data.to_h, user_id: user_id.to_i)
   
         workout.graphql_data

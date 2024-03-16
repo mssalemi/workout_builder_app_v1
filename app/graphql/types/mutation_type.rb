@@ -9,5 +9,7 @@ module Types
     field :reorder_exercises_in_workout, mutation: Mutations::ReorderExercisesInWorkout
     field :complete_workout, mutation: Mutations::CompleteWorkout
     field :delete_exercise_from_workout, mutation: Mutations::DeleteExerciseFromWorkout
+
+    field :user_login, mutation: Mutations::UserLogin
   end
 end
