@@ -45,14 +45,6 @@ class GraphqlController < ApplicationController
     nil
   end
 
-  # Dummy method for token decoding - you'll need to replace this with your actual token decoding logic
-  def decode_token(token)
-    # Decode the JWT token and return the payload
-    # This is where you'd integrate your JWT decoding library, e.g., JWT.decode(token, secret, true, algorithm: 'HS256')
-    # For simplicity, this dummy method just returns a hash with a user_id
-    { 'user_id' => 1, 'token': token }
-  end
-
   # Handle variables in form data, JSON body, or a blank value
   def prepare_variables(variables_param)
     case variables_param
