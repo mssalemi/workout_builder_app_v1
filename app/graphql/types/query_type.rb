@@ -23,14 +23,21 @@ module Types
     end
 
     field :find_workouts_by_user, [Types::WorkoutType], null: false do
-      description "Find all workouts by User ID"
-      argument :user_id, GraphQL::Types::ID, required: true
+      description "Find all workouts by User ID sent through JWT token."
     end
 
-    def find_workouts_by_user(user_id:)
+    def find_workouts_by_user
+      puts "GOT HERE"
+      current_user = context[:current_user]
+      puts "CURRENT USER: ", current_user
+      puts "CURRENT USER ID: ", current_user.id
+      puts "----------------------------"
+      puts "----------------------------"
+      puts "----------------------------"
+      puts "----------------------------"
       # Fetch the last 10 workouts by ID for the given user, assuming higher IDs are more recent.
-      workouts = Workout.where(user_id: user_id.to_i).order(id: :desc).limit(10)
-    
+      workouts = Workout.where(user_id: current_user.id).order(id: :desc).limit(10)
+      puts "workouts", workouts
       # Load and map each workout using your existing logic
       workouts.map do |workout|
         WorkoutBuilder::WorkoutBuilderWorkout.load_from_db(workout_id: workout.id)
