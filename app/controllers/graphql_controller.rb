@@ -10,15 +10,12 @@ class GraphqlController < ApplicationController
   # protect_from_forgery with: :null_session
 
   def execute
-    puts "I GOT CALLED"
     variables = prepare_variables(params[:variables])
     query = params[:query]
     operation_name = params[:operationName]
-    puts "context", { current_user: current_user}
     context = {
       current_user: current_user,
     }
-    puts current_user
     result = WorkoutBuilderAppV1Schema.execute(query, variables: variables, context: context, operation_name: operation_name)
     render json: result
   rescue StandardError => e
@@ -31,14 +28,11 @@ class GraphqlController < ApplicationController
   # Extracts the token from the Authorization header and decodes it to authenticate the user
   def current_user
     token = request.headers['Authorization']&.split(' ')&.last
-    puts "request headers: #{request.headers['Authorization']&.split(' ')}"
     return if token.blank?
 
-    puts "token is: #{token}"
 
     # Decode the token (assuming you have a method to do this)
     payload = JsonWebToken.decode(token)
-    puts "payload from jwt is: #{payload}"
 
     return if payload.blank?
 

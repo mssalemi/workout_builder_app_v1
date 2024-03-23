@@ -19,6 +19,12 @@ module Types
 
       return nil unless workout  
 
+      current_user = context[:current_user]
+
+      if (workout.user.id != current_user.id)
+        raise GraphQL::ExecutionError, "You are not authorized to view this workout."
+      end
+
       workout.graphql_data
     end
 
@@ -27,21 +33,11 @@ module Types
     end
 
     def find_workouts_by_user
-      puts "GOT HERE"
       current_user = context[:current_user]
-      puts "CURRENT USER: ", current_user
-      puts "CURRENT USER ID: ", current_user.id
-      puts "----------------------------"
-      puts "----------------------------"
-      puts "----------------------------"
-      puts "----------------------------"
-      # Fetch the last 10 workouts by ID for the given user, assuming higher IDs are more recent.
       workouts = Workout.where(user_id: current_user.id).order(id: :desc).limit(10)
-      puts "workouts", workouts
-      # Load and map each workout using your existing logic
       workouts.map do |workout|
         WorkoutBuilder::WorkoutBuilderWorkout.load_from_db(workout_id: workout.id)
-      end.map(&:graphql_data) # Ensure your Workout model or builder has a method `graphql_data` to format the data for GraphQL response
+      end.map(&:graphql_data)
     end
   end
   
