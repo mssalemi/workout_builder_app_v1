@@ -9,6 +9,39 @@ class User
   extend CommonRelationMethods
   extend GeneratedRelationMethods
 
+  sig { params(unencrypted_password: T.untyped).returns(T.untyped) }
+  def authenticate(unencrypted_password); end
+
+  sig { params(unencrypted_password: T.untyped).returns(T.untyped) }
+  def authenticate_password(unencrypted_password); end
+
+  sig { returns(T.untyped) }
+  def password; end
+
+  sig { params(unencrypted_password: T.untyped).returns(T.untyped) }
+  def password=(unencrypted_password); end
+
+  sig { returns(T.untyped) }
+  def password_challenge; end
+
+  sig { params(_arg0: T.untyped).returns(T.untyped) }
+  def password_challenge=(_arg0); end
+
+  sig { returns(T.untyped) }
+  def password_confirmation; end
+
+  sig { returns(T.untyped) }
+  def password_confirmation; end
+
+  sig { params(_arg0: T.untyped).returns(T.untyped) }
+  def password_confirmation=(_arg0); end
+
+  sig { params(password_confirmation: T.untyped).returns(T.untyped) }
+  def password_confirmation=(password_confirmation); end
+
+  sig { returns(T.untyped) }
+  def password_salt; end
+
   private
 
   sig { returns(NilClass) }
@@ -633,6 +666,51 @@ class User
     sig { void }
     def name_will_change!; end
 
+    sig { returns(T.nilable(::String)) }
+    def password_digest; end
+
+    sig { params(value: T.nilable(::String)).returns(T.nilable(::String)) }
+    def password_digest=(value); end
+
+    sig { returns(T::Boolean) }
+    def password_digest?; end
+
+    sig { returns(T.nilable(::String)) }
+    def password_digest_before_last_save; end
+
+    sig { returns(T.untyped) }
+    def password_digest_before_type_cast; end
+
+    sig { returns(T::Boolean) }
+    def password_digest_came_from_user?; end
+
+    sig { returns(T.nilable([T.nilable(::String), T.nilable(::String)])) }
+    def password_digest_change; end
+
+    sig { returns(T.nilable([T.nilable(::String), T.nilable(::String)])) }
+    def password_digest_change_to_be_saved; end
+
+    sig { params(from: T.nilable(::String), to: T.nilable(::String)).returns(T::Boolean) }
+    def password_digest_changed?(from: T.unsafe(nil), to: T.unsafe(nil)); end
+
+    sig { returns(T.nilable(::String)) }
+    def password_digest_in_database; end
+
+    sig { returns(T.nilable([T.nilable(::String), T.nilable(::String)])) }
+    def password_digest_previous_change; end
+
+    sig { params(from: T.nilable(::String), to: T.nilable(::String)).returns(T::Boolean) }
+    def password_digest_previously_changed?(from: T.unsafe(nil), to: T.unsafe(nil)); end
+
+    sig { returns(T.nilable(::String)) }
+    def password_digest_previously_was; end
+
+    sig { returns(T.nilable(::String)) }
+    def password_digest_was; end
+
+    sig { void }
+    def password_digest_will_change!; end
+
     sig { void }
     def restore_created_at!; end
 
@@ -647,6 +725,9 @@ class User
 
     sig { void }
     def restore_name!; end
+
+    sig { void }
+    def restore_password_digest!; end
 
     sig { void }
     def restore_updated_at!; end
@@ -680,6 +761,12 @@ class User
 
     sig { returns(T::Boolean) }
     def saved_change_to_name?; end
+
+    sig { returns(T.nilable([T.nilable(::String), T.nilable(::String)])) }
+    def saved_change_to_password_digest; end
+
+    sig { returns(T::Boolean) }
+    def saved_change_to_password_digest?; end
 
     sig { returns(T.nilable([T.nilable(::ActiveSupport::TimeWithZone), T.nilable(::ActiveSupport::TimeWithZone)])) }
     def saved_change_to_updated_at; end
@@ -746,6 +833,9 @@ class User
 
     sig { returns(T::Boolean) }
     def will_save_change_to_name?; end
+
+    sig { returns(T::Boolean) }
+    def will_save_change_to_password_digest?; end
 
     sig { returns(T::Boolean) }
     def will_save_change_to_updated_at?; end

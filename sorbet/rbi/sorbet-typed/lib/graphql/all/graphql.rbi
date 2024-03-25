@@ -5,7 +5,7 @@
 #
 #   https://github.com/sorbet/sorbet-typed/edit/master/lib/graphql/all/graphql.rbi
 #
-# typed: false
+# typed: strong
 
 module GraphQL
   class << self
