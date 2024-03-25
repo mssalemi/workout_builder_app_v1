@@ -1,3 +1,4 @@
+# typed: false
 # db/seeds.rb
 
 # Clear existing data to avoid duplication

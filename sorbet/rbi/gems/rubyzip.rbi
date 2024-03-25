@@ -102,7 +102,7 @@ class Zip::Inflater < Zip::Decompressor
 end
 class Zip::Deflater < Zip::Compressor
 end
-class Zip::StreamableStream < Anonymous_Delegator_59
+class Zip::StreamableStream < Anonymous_Delegator_57
 end
 class Zip::StreamableDirectory < Zip::Entry
 end

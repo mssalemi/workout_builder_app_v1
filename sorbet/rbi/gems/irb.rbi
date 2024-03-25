@@ -104,15 +104,15 @@ class IRB::Statement::Command < IRB::Statement
 end
 class IRB::Locale
 end
-class InvalidName___Class_0x00___Vec_54
+class InvalidName___Class_0x00___Vec_53
 end
-class InvalidName___Class_0x00___Canvas_55
+class InvalidName___Class_0x00___Canvas_54
 end
-class InvalidName___Class_0x00___RubyModel_56
+class InvalidName___Class_0x00___RubyModel_55
 end
 module IRB::Debug
 end
-module InvalidName___Class_0x00___SkipPathHelperForIRB_57
+module InvalidName___Class_0x00___SkipPathHelperForIRB_56
 end
 class IRB::Pager
 end

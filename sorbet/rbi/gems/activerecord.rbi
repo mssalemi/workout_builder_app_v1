@@ -154,7 +154,7 @@ class Arel::Table
 end
 module Arel::Attributes
 end
-class Anonymous_Struct_22 < Struct
+class Anonymous_Struct_21 < Struct
   def name; end
   def name=(_); end
   def relation; end
@@ -165,7 +165,7 @@ class Anonymous_Struct_22 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Arel::Attributes::Attribute < Anonymous_Struct_22
+class Arel::Attributes::Attribute < Anonymous_Struct_21
   def able_to_type_cast?; end
   def lower; end
   def type_cast_for_database(value); end
@@ -435,7 +435,7 @@ class Arel::Visitors::Dot::Node
   def name; end
   def name=(arg0); end
 end
-class Anonymous_Struct_23 < Struct
+class Anonymous_Struct_22 < Struct
   def from; end
   def from=(_); end
   def name; end
@@ -448,7 +448,7 @@ class Anonymous_Struct_23 < Struct
   def to; end
   def to=(_); end
 end
-class Arel::Visitors::Dot::Edge < Anonymous_Struct_23
+class Arel::Visitors::Dot::Edge < Anonymous_Struct_22
 end
 module Arel::Collectors
 end
@@ -2658,13 +2658,13 @@ end
 class ActiveRecord::Type::Time < ActiveModel::Type::Time
   include ActiveRecord::Type::Internal::Timezone
 end
-class ActiveRecord::Type::Time::Value < Anonymous_Delegator_24
+class ActiveRecord::Type::Time::Value < Anonymous_Delegator_23
 end
 class ActiveRecord::Type::Text < ActiveModel::Type::String
 end
 class ActiveRecord::Type::UnsignedInteger < ActiveModel::Type::Integer
 end
-class ActiveRecord::Type::Serialized < Anonymous_Delegator_25
+class ActiveRecord::Type::Serialized < Anonymous_Delegator_24
   include ActiveModel::Type::Helpers::Mutable
 end
 class ActiveRecord::Type::AdapterSpecificRegistry
@@ -2695,7 +2695,7 @@ module ActiveRecord::Core
 end
 module ActiveRecord::Core::ClassMethods
 end
-class ActiveRecord::Core::InspectionMask < Anonymous_Delegator_26
+class ActiveRecord::Core::InspectionMask < Anonymous_Delegator_25
 end
 class ActiveRecord::ConnectionAdapters::ConnectionHandler
 end
@@ -2784,7 +2784,7 @@ module ActiveRecord::Locking::Optimistic
 end
 module ActiveRecord::Locking::Optimistic::ClassMethods
 end
-class ActiveRecord::Locking::LockingType < Anonymous_Delegator_27
+class ActiveRecord::Locking::LockingType < Anonymous_Delegator_26
 end
 module ActiveRecord::Locking::Pessimistic
 end
@@ -2817,7 +2817,7 @@ end
 module ActiveRecord::AttributeMethods::TimeZoneConversion
   extend ActiveSupport::Concern
 end
-class ActiveRecord::AttributeMethods::TimeZoneConversion::TimeZoneConverter < Anonymous_Delegator_28
+class ActiveRecord::AttributeMethods::TimeZoneConversion::TimeZoneConverter < Anonymous_Delegator_27
 end
 module ActiveRecord::AttributeMethods::TimeZoneConversion::ClassMethods
 end
@@ -2980,7 +2980,7 @@ module ActiveRecord::Normalization
 end
 module ActiveRecord::Normalization::ClassMethods
 end
-class ActiveRecord::Normalization::NormalizedValueType < Anonymous_Delegator_29
+class ActiveRecord::Normalization::NormalizedValueType < Anonymous_Delegator_28
   extend ActiveModel::Type::SerializeCastValue::ClassMethods
   include ActiveModel::Type::SerializeCastValue
 end

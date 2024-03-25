@@ -1,3 +1,4 @@
+# typed: true
 class Exercise < ApplicationRecord
     self.inheritance_column = 'sti_type' 
 

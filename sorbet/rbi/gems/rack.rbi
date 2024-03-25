@@ -403,15 +403,11 @@ class Rack::BodyProxy
 end
 class Rack::Sendfile
 end
-class Rack::MethodOverride
-end
 class Rack::Head
 end
 class Rack::ConditionalGet
 end
 class Rack::ETag
-end
-class Rack::TempfileReaper
 end
 class Rack::Files
 end
@@ -452,7 +448,7 @@ class Rack::Deflater::GzipStream
 end
 class Rack::Directory
 end
-class Rack::Directory::DirectoryBody < Anonymous_Struct_16
+class Rack::Directory::DirectoryBody < Anonymous_Struct_15
 end
 class Rack::ForwardRequest < Exception
 end
@@ -475,6 +471,8 @@ class Rack::Lock
 end
 class Rack::Logger
 end
+class Rack::MethodOverride
+end
 class Rack::NullLogger
 end
 class Rack::Reloader
@@ -490,6 +488,8 @@ end
 class Rack::Builder
 end
 class Rack::ShowExceptions
+end
+class Rack::TempfileReaper
 end
 class Rack::ShowStatus
 end
@@ -512,7 +512,7 @@ end
 class Rack::Multipart::Parser::Collector
   include Enumerable
 end
-class Rack::Multipart::Parser::Collector::MimePart < Anonymous_Struct_17
+class Rack::Multipart::Parser::Collector::MimePart < Anonymous_Struct_16
 end
 class Rack::Multipart::Parser::Collector::BufferPart < Rack::Multipart::Parser::Collector::MimePart
 end

@@ -5,7 +5,7 @@
 # Please instead update this file by running `bin/tapioca dsl Types::ReorderInstructionInputType`.
 
 class Types::ReorderInstructionInputType
-  sig { returns(::String) }
+  sig { returns(::Integer) }
   def exercise_history_id; end
 
   sig { returns(::Integer) }

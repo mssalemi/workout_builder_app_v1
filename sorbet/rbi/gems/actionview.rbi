@@ -938,7 +938,7 @@ end
 class ActionView::TestCase::TestController < ActionController::Base
   include ActionDispatch::Routing::UrlFor
   include ActionDispatch::TestProcess
-  include Anonymous_Module_30
+  include Anonymous_Module_29
 end
 module ActionView::TestCase::TestController::HelperMethods
   include ActionController::Base::HelperMethods

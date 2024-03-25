@@ -37,8 +37,8 @@ module WorkoutBuilder
             sets: 0,
             rpe: 0,
         }, user_id: nil)
-        puts "DID WE GET A USER ID", user_id
-            exercise = WorkoutBuilderExercise.create_workout_exercise(
+
+        exercise = WorkoutBuilderExercise.create_workout_exercise(
                 workout_id: @workout_id, 
                 user_id: user_id || @user.id, 
                 exercise_id: exercise_id, 
@@ -131,10 +131,6 @@ module WorkoutBuilder
 
         sig { returns(Hash) }
         def graphql_data
-            puts "workout_id: #{@workout_id}"
-            puts "title: #{@title}"
-            puts "user.id: #{user.id}"
-            
             {
                 id: self.workout_id,
                 title: self.title,

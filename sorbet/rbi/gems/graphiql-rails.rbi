@@ -42,7 +42,7 @@ class GraphiQL::Rails::Engine < Rails::Engine
 end
 class GraphiQL::Rails::EditorsController < ActionController::Base
   include ActionDispatch::Routing::UrlFor
-  include Anonymous_Module_52
+  include Anonymous_Module_51
 end
 module GraphiQL::Rails::EditorsController::HelperMethods
   include ActionController::Base::HelperMethods

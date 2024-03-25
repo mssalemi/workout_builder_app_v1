@@ -1,3 +1,4 @@
+# typed: strict
 module Types
     class PerformanceDataType < Types::BaseObject
       description "Performance data for an exercise"

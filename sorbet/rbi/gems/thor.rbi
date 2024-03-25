@@ -16,7 +16,7 @@ class Thor
   include Thor::Invocation
   include Thor::Shell
 end
-class Thor::Command < Anonymous_Struct_60
+class Thor::Command < Anonymous_Struct_58
 end
 class Thor::HiddenCommand < Thor::Command
 end

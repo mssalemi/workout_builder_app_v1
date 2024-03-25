@@ -1,3 +1,4 @@
+# typed: strict
 module Types
     class PerformanceDataInputType < Types::BaseInputObject
       description "Performance data for an exercise"

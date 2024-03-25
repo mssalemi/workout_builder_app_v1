@@ -202,9 +202,9 @@ class Bootsnap::CompileCache::YAML::Uncompilable < StandardError
 end
 class Bootsnap::CompileCache::YAML::UnsupportedTags < Bootsnap::CompileCache::YAML::Uncompilable
 end
-module InvalidName___Class_0x00___EncodingAwareSymbols_18
+module InvalidName___Class_0x00___EncodingAwareSymbols_17
   def unpack(payload); end
-  extend InvalidName___Class_0x00___EncodingAwareSymbols_18
+  extend InvalidName___Class_0x00___EncodingAwareSymbols_17
 end
 module Bootsnap::CompileCache::YAML::Psych4
   def input_to_storage(contents, _); end

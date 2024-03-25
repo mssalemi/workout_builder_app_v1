@@ -1,3 +1,4 @@
+# typed: false
 # frozen_string_literal: true
 
 class GraphqlController < ApplicationController
@@ -13,8 +14,7 @@ class GraphqlController < ApplicationController
     query = params[:query]
     operation_name = params[:operationName]
     context = {
-      # Query context goes here, for example:
-      # current_user: current_user,
+      current_user: current_user,
     }
     result = WorkoutBuilderAppV1Schema.execute(query, variables: variables, context: context, operation_name: operation_name)
     render json: result
@@ -24,6 +24,28 @@ class GraphqlController < ApplicationController
   end
 
   private
+
+  # Extracts the token from the Authorization header and decodes it to authenticate the user
+  def current_user
+    token = request.headers['Authorization']&.split(' ')&.last
+    return if token.blank?
+
+
+    # Decode the token (assuming you have a method to do this)
+    payload = JsonWebToken.decode(token)
+
+    return if payload.blank?
+
+    user_id = payload['user_id'].to_i
+
+    user = User.find(user_id)
+
+    user
+    # Find the user from the decoded token payload
+  rescue => e
+    # Handle token decode errors, e.g., expired or invalid token
+    nil
+  end
 
   # Handle variables in form data, JSON body, or a blank value
   def prepare_variables(variables_param)

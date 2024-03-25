@@ -1,4 +1,4 @@
-# typed: false
+# typed: true
 
 class ExerciseService
     def initialize(user_id:)

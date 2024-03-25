@@ -1,3 +1,4 @@
+# typed: false
 # frozen_string_literal: true
 
 module Types
@@ -18,22 +19,36 @@ module Types
 
       return nil unless workout  
 
+      current_user = context[:current_user]
+
+      if (workout.user.id != current_user.id)
+        raise GraphQL::ExecutionError, "You are not authorized to view this workout."
+      end
+
       workout.graphql_data
     end
 
     field :find_workouts_by_user, [Types::WorkoutType], null: false do
-      description "Find all workouts by User ID"
-      argument :user_id, GraphQL::Types::ID, required: true
+      description "Find all workouts by User ID sent through JWT token."
     end
 
-    def find_workouts_by_user(user_id:)
-      # Fetch the last 10 workouts by ID for the given user, assuming higher IDs are more recent.
-      workouts = Workout.where(user_id: user_id.to_i).order(id: :desc).limit(10)
-    
-      # Load and map each workout using your existing logic
+    def find_workouts_by_user
+      current_user = context[:current_user]
+      workouts = Workout.where(user_id: current_user.id).order(id: :desc).limit(10)
       workouts.map do |workout|
         WorkoutBuilder::WorkoutBuilderWorkout.load_from_db(workout_id: workout.id)
-      end.map(&:graphql_data) # Ensure your Workout model or builder has a method `graphql_data` to format the data for GraphQL response
+      end.map(&:graphql_data)
+    end
+
+    field :find_workout_program, Types::WorkoutProgramType, null: true do
+      description "Find a workout program by ID"
+      argument :program_id, GraphQL::Types::ID, required: true
+    end
+    
+    def find_workout_program(program_id:)
+      program = ::WorkoutProgram.find(program_id)
+      # Authorization checks here
+      program
     end
   end
   

@@ -490,7 +490,7 @@ class Mail::Header
   def to_s; end
   include Enumerable
 end
-class Mail::PartsList < Anonymous_Delegator_41
+class Mail::PartsList < Anonymous_Delegator_40
   def attachments; end
   def collect!; end
   def collect; end

@@ -1,4 +1,4 @@
-# typed: true
+# typed: strict
 
 module Mutations
     class UpdateExerciseInWorkout < BaseMutation
@@ -16,13 +16,10 @@ module Mutations
       def resolve(exercise_history_id:, new_order: nil, new_performance_data: nil)
         exercise = WorkoutBuilder::WorkoutBuilderExercise.load_from_db(exercise_history_id: exercise_history_id.to_i)
         raise GraphQL::ExecutionError, "Exercise not found" unless exercise
+
   
         new_performance_data = new_performance_data.to_h if new_performance_data
 
-        puts "TRYING TO UPDATE EXERCISE"
-        puts "new_order: #{new_order}"
-        puts "new_performance_data: #{new_performance_data}"
-        puts "exercise: #{exercise}"
         exercise.edit_exercise(new_order: new_order, new_performance_data: new_performance_data)
   
         exercise.graphql_data
