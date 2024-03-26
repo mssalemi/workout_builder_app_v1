@@ -19,8 +19,8 @@ module WorkoutBuilder
         sig { returns(String) }
         attr_reader :title
 
-        sig { params(workout_id: Integer, title: String, user_id: Integer, exercises: T::Array[WorkoutBuilderExercise]).void }
-        def initialize(workout_id:, title:, user_id:, exercises: [])
+        sig { params(workout_id: Integer, title: String, user_id: Integer, exercises: T::Array[WorkoutBuilderExercise], workout_program_id: T.nilable(Integer)).void }
+        def initialize(workout_id:, title:, user_id:, exercises: [], workout_program_id: nil)
             user = User.find_by(id: user_id)
             raise ActiveRecord::RecordNotFound if user.nil?
 
@@ -74,6 +74,7 @@ module WorkoutBuilder
                 user_id: workout_record.user_id, 
                 exercises: exercises, 
                 title: workout_record.title || "No Title",
+                workout_program_id: workout_record.workout_program_id
             )
             workout_builder
         end
