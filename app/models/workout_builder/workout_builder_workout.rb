@@ -119,14 +119,14 @@ module WorkoutBuilder
             end
         end
 
-        sig { params(user_id: Integer, title: T.nilable(String)).returns(T.nilable(Workout)) }
-        def self.create_user_workout(user_id:, title: nil)
+        sig { params(user_id: Integer, title: T.nilable(String), workout_program_id: T.nilable(Integer)).returns(T.nilable(Workout)) }
+        def self.create_user_workout(user_id:, title: nil, workout_program_id: nil)
             user = User.find_by(id: 1)
             return nil if user.nil?
 
             title = title || "Workout #{Time.now.to_i}"
 
-            Workout.create!(user_id: user_id, title: title, goal: {})
+            Workout.create!(user_id: user_id, title: title, goal: {}, workout_program_id: workout_program_id)
         end
 
         sig { returns(Hash) }
