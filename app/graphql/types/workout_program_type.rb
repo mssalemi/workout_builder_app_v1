@@ -15,9 +15,10 @@ module Types
   
       def workouts
         # Assuming a WorkoutProgram `has_many :workouts` association
-        object.workouts
-        []
+        object.workouts.map do |workout|
+          WorkoutBuilder::WorkoutBuilderWorkout.load_from_db(workout_id: workout.id).graphql_data
+        end
       end
     end
-  end
+end
   
