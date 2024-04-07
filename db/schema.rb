@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_07_110158) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_07_110801) do
   create_table "exercise_histories", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "exercise_id", null: false
@@ -49,6 +49,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_07_110158) do
     t.integer "workout_program_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "order"
     t.index ["workout_program_id"], name: "index_weeks_on_workout_program_id"
   end
 
@@ -70,6 +71,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_07_110158) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "workout_week_id"
+    t.integer "order"
     t.index ["user_id"], name: "index_workouts_on_user_id"
     t.index ["workout_week_id"], name: "index_workouts_on_workout_week_id"
   end
