@@ -19,14 +19,23 @@ module WorkoutBuilder
         sig { returns(String) }
         attr_reader :title
 
-        sig { params(workout_id: Integer, title: String, user_id: Integer, exercises: T::Array[WorkoutBuilderExercise], workout_program_id: T.nilable(Integer)).void }
-        def initialize(workout_id:, title:, user_id:, exercises: [], workout_program_id: nil)
+        sig { params(
+            workout_id: Integer, 
+            title: String, 
+            user_id: Integer, 
+            exercises: T::Array[WorkoutBuilderExercise],
+            workout_week_id: T.nilable(Integer), 
+            order: T.nilable(Integer)
+        ).void }
+        def initialize(workout_id:, title:, user_id:, exercises: [], workout_week_id: nil, order: nil)
             user = User.find_by(id: user_id)
             raise ActiveRecord::RecordNotFound if user.nil?
 
             @title = title
             @workout_id = workout_id
             @exercises = T.let(exercises, T::Array[WorkoutBuilderExercise])
+            @workout_week_id = workout_week_id
+            @order = order
             @user = user
         end
 
@@ -56,7 +65,7 @@ module WorkoutBuilder
             return nil unless workout_record
         
             exercise_histories = ExerciseHistory.includes(:exercise).where(workout_id: workout_id)
-
+            puts "hello"
             exercises = exercise_histories.map do |history_record|
                 WorkoutBuilderExercise.new(
                     exercise_id: history_record.exercise_id,
@@ -74,7 +83,8 @@ module WorkoutBuilder
                 user_id: workout_record.user_id, 
                 exercises: exercises, 
                 title: workout_record.title || "No Title",
-                workout_program_id: workout_record.workout_program_id
+                workout_week_id: T.unsafe(workout_record).workout_week_id,
+                order: T.unsafe(workout_record).order,
             )
             workout_builder
         end

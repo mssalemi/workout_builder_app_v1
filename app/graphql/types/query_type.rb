@@ -11,19 +11,19 @@ module Types
 
     field :find_workout, Types::WorkoutType, null: true do
       description "Find a workout by ID"
-      argument :workout_id, GraphQL::Types::ID, required: true
+      argument :workout_id, Integer, required: true
     end
     
     def find_workout(workout_id:)
-      workout = WorkoutBuilder::WorkoutBuilderWorkout.load_from_db(workout_id: workout_id.to_i)
+      workout = WorkoutBuilder::WorkoutBuilderWorkout.load_from_db(workout_id: workout_id)
 
       return nil unless workout  
 
-      current_user = context[:current_user]
+      # current_user = context[:current_user]
 
-      if (workout.user.id != current_user.id)
-        raise GraphQL::ExecutionError, "You are not authorized to view this workout."
-      end
+      # if (workout.user.id != current_user.id)
+      #   raise GraphQL::ExecutionError, "You are not authorized to view this workout."
+      # end
 
       workout.graphql_data
     end
