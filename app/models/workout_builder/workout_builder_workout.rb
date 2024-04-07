@@ -65,7 +65,7 @@ module WorkoutBuilder
             return nil unless workout_record
         
             exercise_histories = ExerciseHistory.includes(:exercise).where(workout_id: workout_id)
-            puts "hello"
+
             exercises = exercise_histories.map do |history_record|
                 WorkoutBuilderExercise.new(
                     exercise_id: history_record.exercise_id,
