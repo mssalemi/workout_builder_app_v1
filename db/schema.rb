@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_25_003056) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_07_110158) do
   create_table "exercise_histories", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "exercise_id", null: false
@@ -45,6 +45,13 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_25_003056) do
     t.string "password_digest"
   end
 
+  create_table "weeks", force: :cascade do |t|
+    t.integer "workout_program_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["workout_program_id"], name: "index_weeks_on_workout_program_id"
+  end
+
   create_table "workout_programs", force: :cascade do |t|
     t.string "title", null: false
     t.text "description"
@@ -62,15 +69,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_25_003056) do
     t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "workout_program_id"
+    t.integer "workout_week_id"
     t.index ["user_id"], name: "index_workouts_on_user_id"
-    t.index ["workout_program_id"], name: "index_workouts_on_workout_program_id"
+    t.index ["workout_week_id"], name: "index_workouts_on_workout_week_id"
   end
 
   add_foreign_key "exercise_histories", "exercises"
   add_foreign_key "exercise_histories", "users"
   add_foreign_key "exercise_histories", "workouts"
+  add_foreign_key "weeks", "workout_programs"
   add_foreign_key "workout_programs", "users"
   add_foreign_key "workouts", "users"
-  add_foreign_key "workouts", "workout_programs"
 end
