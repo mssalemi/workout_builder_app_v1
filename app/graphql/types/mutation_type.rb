@@ -4,6 +4,7 @@
 module Types
   class MutationType < Types::BaseObject
     field :create_workout_program, mutation: Mutations::CreateWorkoutProgram
+    field :update_workout_week_association, mutation: Mutations::UpdateWorkoutWeekAssociation
 
     field :create_user_workout, mutation: Mutations::CreateUserWorkout
     field :add_exercise_to_workout, mutation: Mutations::AddExerciseToWorkout

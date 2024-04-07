@@ -25,7 +25,8 @@ module Mutations
         end
 
         workout.add_exercise(exercise_id: exercise_id.to_i, performance_data: performance_data.to_h, user_id: user_id || current_user.id)
-  
+        
+
         workout.graphql_data
       end
     end
