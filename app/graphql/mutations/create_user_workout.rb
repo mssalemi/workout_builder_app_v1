@@ -14,21 +14,27 @@ module Mutations
       
       sig { params(title: T.nilable(String), workout_week_id: T.nilable(Integer), order: T.nilable(Integer)).returns(T.untyped) }
       def resolve(title: nil, workout_week_id: nil, order: nil)
+        puts "hey"
         current_user = context[:current_user]
         int_user_id = current_user.id
+
+        puts "user id: #{int_user_id}"
         
         # Ensure the workout_week_id is provided and valid
-        week = T.unsafe(Week).find_by(id: workout_week_id)
-        raise GraphQL::ExecutionError, "Week not found" unless week
-  
+        week = nil
+        if workout_week_id && order
+          week = T.unsafe(Week).find_by(id: workout_week_id)
+        end
+        puts "creating workout...."
         # Create the workout associated with the week
         workout = Workout.new(
           user_id: int_user_id, 
           title: title, 
-          week_id: week.id, 
+          workout_week_id: week&.id, 
           order: order
         )
   
+        puts workout
         raise GraphQL::ExecutionError, "Failed to create workout" unless workout.save
   
         workout
