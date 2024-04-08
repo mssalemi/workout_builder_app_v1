@@ -13,6 +13,52 @@ The Workout Builder App is a GraphQL API designed to manage workouts for users. 
 
 The API provides several queries and mutations to interact with workouts and exercises. Below is an example query to find a workout and its associated exercises:
 
+HEADERS:
+
+```graphql
+
+{
+  "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE3MTI2ODMxNTd9phjb4VM-3ILNkWJLHiOnfzhiKsi0KZar06hTiz4vfGU",
+  "Content-Type": "application/json"
+}
+
+```
+
+Find Workout Programs
+
+```graphql
+
+query FindWorkoutProgramsByUser {
+  findWorkoutProgramsByUser {
+    id
+    userId
+    title
+    description
+    difficultyLevel
+    weeks {
+      workoutProgramId
+      order
+      workouts {
+        title
+        exercises {
+          performanceData {
+            reps
+            weight
+            sets
+          }
+          exercise {
+            title
+          }
+          userId
+        }
+        
+      }
+    }
+  }
+}
+
+```
+
 ```graphql
 
 query GetExercise {

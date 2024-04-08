@@ -50,6 +50,16 @@ module Types
       # Authorization checks here
       program
     end
+
+    field :find_workout_programs_by_user, [Types::WorkoutProgramType], null: false do
+      description "Find all workout programs by User ID sent through JWT token."
+    end
+    
+    def find_workout_programs_by_user
+      current_user = context[:current_user]
+      programs = WorkoutProgram.where(user_id: current_user.id).order(id: :desc).limit(10)
+      programs
+    end
   end
   
 end
