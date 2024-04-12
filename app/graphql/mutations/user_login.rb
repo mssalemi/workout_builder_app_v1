@@ -21,6 +21,9 @@ module Mutations
         user = User.find(user_id)
 
         puts "user: #{user.inspect}"
+        puts "---------- AUTHENTICATE ----------"
+        puts "passowrd: #{password}"
+        puts user&.authenticate(password)
   
         # Authenticate the user
         if user&.authenticate(password)

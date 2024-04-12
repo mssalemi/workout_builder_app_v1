@@ -244,3 +244,11 @@ Accessibility and Inclusivity Features:
 Ensure the app is accessible to people with disabilities by following best practices for accessibility in design and functionality.
 Include workout modifications and options to cater to a wide range of physical abilities and fitness levels.
 By integrating these features, your API can provide a more comprehensive, engaging, and personalized fitness platform that caters to a wider audience and their evolving fitness needs.
+
+## How to Acces Freinds
+
+med=User.find(1)
+mate = User.find(5)
+med.add_friend(mate)
+med.all_friends
+mate.all_friends

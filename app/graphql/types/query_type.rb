@@ -57,6 +57,7 @@ module Types
     
     def find_workout_programs_by_user
       current_user = context[:current_user]
+      puts "current_user: #{current_user.inspect}"
       programs = WorkoutProgram.where(user_id: current_user.id).order(id: :desc).limit(10)
       programs
     end
