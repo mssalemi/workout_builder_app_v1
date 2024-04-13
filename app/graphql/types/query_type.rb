@@ -3,6 +3,14 @@
 
 module Types
   class QueryType < Types::BaseObject
+    # Inside the module Types::QueryType
+    field :user_friends, [Types::UserType], null: false, description: "Retrieve a list of friends for the current user."
+    def user_friends
+      current_user = context[:current_user]
+      current_user.all_friends.uniq
+    end
+
+
     field :exercises, [Types::ExerciseType], null: false,
       description: "An example field added by the generator"
     def exercises
@@ -61,6 +69,18 @@ module Types
       programs = WorkoutProgram.where(user_id: current_user.id).order(id: :desc).limit(10)
       programs
     end
+
+    field :find_friends_workout_programs, [Types::WorkoutProgramType], null: false do
+      description "Find all workout programs by User ID sent through JWT token."
+    end
+    def find_friends_workout_programs
+      current_user = context[:current_user]
+      friends = current_user.all_friends
+      friend_workouts = []
+      friends.each do |friend|
+        friend_workouts << WorkoutProgram.where(user_id: friend.id).order(id: :desc).limit(10)
+      end
+      friend_workouts.flatten.uniq
+    end
   end
-  
 end
