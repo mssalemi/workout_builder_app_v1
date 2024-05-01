@@ -14,7 +14,7 @@ module WorkoutProgramService
                 puts " are we getting here?"
                 ActiveRecord::Base.transaction do
                     workout_program = WorkoutProgram.create!(
-                        title: "Candito 6 Week Strength Program",
+                        title: "Candito 6 Week Strength Program - 215 MAX - MATE",
                         user_id: user.id,
                         difficulty_level: "Intermediate",
                         duration_weeks: 5,
